@@ -1,0 +1,25 @@
+<head>
+
+</head>
+<body>
+    <script src="https://use.fontawesome.com/f59bcd8580.js"></script>
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile>
+            <form novalidate *ngIf="!submitted" [formGroup]="idForm" #fform="ngForm" >
+                <p>
+                    <mat-form-field >
+                        <input matInput formControlName="consignment" placeholder="Consignment Number"  type="text" pattern="[0-9]*" required>
+                        <mat-error *ngIf="formErrors.consignment">{{formErrors.consignment}}</mat-error>
+                      </mat-form-field>
+                </p>
+                <button type="button" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid" (click)='getdata()'>Track</button>
+</form> 
+<div *ngIf="submitted">
+    <p>
+        Status of your Courier : {{courier.status|json}}
+    </p>
+</div> 
+        </mat-grid-tile>
+        <mat-grid-tile><img src="{{image}}" height="350px"></mat-grid-tile>
+    </mat-grid-list>
+</body>

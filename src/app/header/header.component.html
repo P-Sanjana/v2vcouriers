@@ -1,0 +1,39 @@
+<head>
+  
+</head>
+<body>
+<mat-toolbar class="header1">
+  
+  <h2 class="serif"><b>V2V Couriers</b></h2>
+  
+  <a mat-button routerLink="/home"  class="serif" routerLinkActive="active"  ><i class="fa fa-home icon-5x"></i><b> Home</b></a>
+  <a mat-button routerLink="/about" class="serif" routerLinkActive="active"><i class="fa fa-info icon-5x"></i><b>About</b></a>
+  <a mat-button routerLink="/courierrequest" class="serif" routerLinkActive="active" ><i class="fa fa-envelope icon-5x"></i><b>CourierRequest</b></a>
+  <a mat-button routerLink="/track" class="serif" routerLinkActive="active" ><i class="fa fa-location-arrow icon-5x"></i><b>Track</b></a>
+  <a mat-button routerLink="/contactus" class="serif" routerLinkActive="active" ><i class="fa fa-address-card icon-5x"></i><b>Contact</b></a> 
+  <span class="flex-spacer"></span>
+  <div class="searchbar">
+    <input class="search_input" type="text" name="" placeholder="Search...">
+    <a href="#" class="search_icon serif"><i class="fas fa-search icon-5x"></i></a>
+  </div>
+  <a mat-button (click)="openLoginForm()" class="serif" style="font-size:1rem"><i class="fa fa-sign-in-alt icon-5x"></i><b> Login</b></a>
+</mat-toolbar>
+<div class="container jumbotron"
+    fxLayout="row"
+    fxLayout.sm="column" 
+    fxLayout.xs="column" 
+    fxLayoutAlign.xs="start center"
+    fxLayoutAlign.sm="start center" 
+    fxLayoutAlign.gt-sm="center center" 
+    fxLayoutGap="10px">
+
+  <div fxFlex fxFlex.gt-sm="50%" color="primary">
+    <h1 class="serif" >V2V Couriers</h1>
+    <p class="serif">V2V Couriers has grown and placed itself as an ultimate service provider in the Courier Industry in India with its
+    assurance of 32 years expertise.</p>
+  </div>
+  <div fxFlex fxFlex.gt-sm="20%">
+    <img src="{{ image }}" height=170px alt="Logo">
+  </div>
+</div>
+</body>
