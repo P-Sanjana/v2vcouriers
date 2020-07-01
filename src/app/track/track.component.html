@@ -3,7 +3,7 @@
 </head>
 <body>
     <script src="https://use.fontawesome.com/f59bcd8580.js"></script>
-    <mat-grid-list cols="2" rowHeight="2:1">
+    <mat-grid-list cols="2" rowHeight="2:2">
         <mat-grid-tile>
             <form novalidate *ngIf="!submitted" [formGroup]="idForm" #fform="ngForm" >
                 <p>
@@ -15,9 +15,31 @@
                 <button type="button" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid" (click)='getdata()'>Track</button>
 </form> 
 <div *ngIf="submitted">
-    <p>
-        Status of your Courier : {{courier.status|json}}
-    </p>
+    <h2>Consignment Number : {{courier.id|json}}</h2>
+<h3>Senders's Information</h3>
+<p><b>Sender's Name</b> : {{courier.Sendername |json}}</p>
+<p><b>Sender's Mail</b> : {{courier.mail|json}}</p>
+<p><b>Sender's Phone Number</b> : {{courier.phNumber|json}}</p>
+<p><b>Sender's Address</b> : {{courier.Senderaddress|json}} , {{courier.Sendercity|json}} , {{courier.Senderstate|json}}</p>
+<h3>Recipient Information</h3>
+<p><b>Recipient Name</b> : {{courier.repname|json}}</p>
+<p><b>Recipient Phone Number</b> : {{courier.repphNumber|json}}</p>
+<p><b>Recipient Address</b> : {{courier.repaddress|json}} , {{courier.repcity|json}} , {{courier.state|json}}</p>
+<br>
+<p><b>Courier Service</b> : {{courier.courierservice|json}}</p>
+    <div class="container">
+        
+        <span *ngFor="let item of tracks;let i=index">
+            <span  class="circle-desc" [class.circle-desc-active]="courier.status==item">{{item}}</span>
+        </span>
+    </div>
+        <div>
+            <span *ngFor="let item of tracks;let i=index">
+                <span class="circles"  [class.active]="courier.status==item"></span>
+                <span class="bar" *ngIf="(i!=tracks.length-1)"></span>
+            </span>
+        </div>
+    
 </div> 
         </mat-grid-tile>
         <mat-grid-tile><img src="{{image}}" height="350px"></mat-grid-tile>

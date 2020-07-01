@@ -19,13 +19,41 @@ $background-moredark: #355070  ;
     background: $background-moredark;
 }
 .serif {
-    font-family: "Times New Roman", Times, serif;
     font-size:1rem;
+    color:floralwhite;
+  }
+  a.serif:link
+  {
+     background-color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:visited
+  {
+     color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:hover
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:active
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
   }
   .header1{
       background-color: $background-dark;
   }
-  searchbar{
+  .container1{
+  
+    display:flex;
+  }
+  .searchbar{
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;

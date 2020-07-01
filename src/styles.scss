@@ -6,6 +6,7 @@
 //@import '@fontawesome/fontawesome-free/css/all.css';
 //@import "font-awesome.css";
 @import '../node_modules/font-awesome/scss/font-awesome';
+@import "node_modules/bootstrap/scss/bootstrap.scss";
 //@import '~@fortawesome/fontawesome-free/css/all.min.css';
 // some basic resets 
 $lt-gray: #ddd;
@@ -30,13 +31,12 @@ $divider-color:        #BDBDBD;
 body { 
   padding: 0; 
   margin: 0; 
-  font-family: Roboto, sans-serif; 
   
 }
 .container {
   margin: 5px;
   display:flex;
-  font-family: "Times New Roman", Times, serif;
+  padding-left: 300px;
 }
 .background-primary {
 background-color: $background-dark!important;
@@ -55,7 +55,7 @@ flex: 1 1 auto;
   background-color:#1d3557  ;
   color:floralwhite;
   font-size: 50%;
-  font-family: "Times New Roman", Times, serif;
+  
 }
 .back{
   background-image: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,0.2)), url('\assets/images/co1.jpg');

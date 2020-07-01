@@ -17,6 +17,7 @@ export class TrackComponent implements OnInit {
   trackvalues;
   status:string;
   tracks;
+  done="done";
   constructor(@Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,private fb: FormBuilder,
   private courierdata:CourierdataService) {
     this.createForm();
@@ -25,6 +26,7 @@ export class TrackComponent implements OnInit {
   ngOnInit() {
     this.image=this.baseURL+"images/tracker.jpg";
     this.courierdata.gettracks().subscribe(tracks=>this.tracks=tracks);
+    this.courierdata.gettrackvalues().subscribe(trackvalues=>this.trackvalues=trackvalues);
   }
   formErrors={
     'consignment':'',

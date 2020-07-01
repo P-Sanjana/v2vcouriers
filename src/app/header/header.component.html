@@ -4,7 +4,7 @@
 <body>
 <mat-toolbar class="header1">
   
-  <h2 class="serif"><b>V2V Couriers</b></h2>
+  <a mat-button routerLink="/home" class="serif"><h2 class="serif"><b>V2V Couriers</b></h2></a>
   
   <a mat-button routerLink="/home"  class="serif" routerLinkActive="active"  ><i class="fa fa-home icon-5x"></i><b> Home</b></a>
   <a mat-button routerLink="/about" class="serif" routerLinkActive="active"><i class="fa fa-info icon-5x"></i><b>About</b></a>
@@ -18,7 +18,7 @@
   </div>
   <a mat-button (click)="openLoginForm()" class="serif" style="font-size:1rem"><i class="fa fa-sign-in-alt icon-5x"></i><b> Login</b></a>
 </mat-toolbar>
-<div class="container jumbotron"
+<div class="container1 jumbotron"
     fxLayout="row"
     fxLayout.sm="column" 
     fxLayout.xs="column" 
