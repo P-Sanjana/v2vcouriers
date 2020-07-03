@@ -1,0 +1,34 @@
+<body>
+  <div class="cont_img_back_grey">
+    <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+</div>
+<form *ngIf="!registered" novalidate [formGroup]="RegisterForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+    <mat-form-field class="half-width" appearance="none">
+      <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
+      <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="half-width" appearance="none">
+      <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
+      <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="full-width" appearance="none">
+      <input matInput formControlName="email" placeholder="Email" type="email" email required>
+      <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field class="full-width" appearance="none">
+      <input matInput formControlName="password" placeholder="Password" type="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+      <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+    </mat-form-field>
+  </p>
+  <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
+      <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
+</form>
+<div *ngIf="registered">
+  <app-login></app-login>
+</div>
+</body>

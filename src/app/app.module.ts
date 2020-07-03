@@ -24,17 +24,24 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import {AuthService} from './services/auth.service';
+import {CourierdataService} from './services/courierdata.service';
+import {UserserviceService} from './services/userservice.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { CourierrequestComponent } from './courierrequest/courierrequest.component';
 import { FooterComponent } from './footer/footer.component';
 import {CourierserviceService} from './services/courierservice.service';
 import {CouriertypeService} from './services/couriertype.service';
 import { HttpClientModule } from '@angular/common/http';
+import {AuthGuard} from './guards/auth.guard';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { baseURL } from './shared/baseurl';
 import { TrackComponent } from './track/track.component';
 import { SvgbarComponent } from './svgbar/svgbar.component';
 import 'hammerjs';
+import { AlertComponent } from './directives/alert/alert.component';
+import { RegisterComponent } from './register/register.component';
+import { StartComponent } from './start/start.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +54,9 @@ import 'hammerjs';
     FooterComponent,
     TrackComponent,
     SvgbarComponent,
+    AlertComponent,
+    RegisterComponent,
+    StartComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,12 +80,14 @@ import 'hammerjs';
     MatListModule,
     MatCardModule,
     HttpClientModule,
-    MatGridListModule
+    MatGridListModule,
+   
   ],
   entryComponents: [
     LoginComponent
 ],
-  providers: [CouriertypeService,CourierserviceService,{provide: 'BASE_URL', useValue: 'http://localhost:3000/'},],
+  providers: [CouriertypeService,CourierserviceService,{provide: 'BASE_URL', useValue: 'http://localhost:3000/'},AuthGuard,
+  UserserviceService,AuthService,CourierdataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

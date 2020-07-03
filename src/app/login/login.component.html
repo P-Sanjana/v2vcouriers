@@ -1,29 +1,21 @@
-<mat-toolbar class="header1" style="font-size:1rem">
-    Login
-  <span class="flex-spacer"></span>
-  <button mat-button mat-dialog-close>&times;</button>
-  </mat-toolbar>
-  
-  <form novalidate #loginForm="ngForm" (ngSubmit)="onSubmit()">
-
-    <mat-dialog-content>
-      <p>
-        <mat-form-field>
-          <input matInput placeholder="Email" type="email" [(ngModel)]="user.email" name="email" #email="ngModel" required>
-          <mat-error *ngIf="email.errors?.required">Email is required</mat-error>
-          <mat-error *ngIf="email.errors?.email">Please Enter a Valid Email ID</mat-error>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" #password="ngModel" required>
-          <mat-error *ngIf="password.errors?.required">Password is required</mat-error>
-        </mat-form-field>
-        <mat-checkbox [(ngModel)]="user.remember" name="remember">Remember Me</mat-checkbox>
-      </p>
-    </mat-dialog-content>
-    <mat-dialog-actions>
-      <span class="flex-spacer"></span>
-      <button mat-button mat-dialog-close>Cancel</button>
-      <button type="submit" mat-button class="header1 text-floral-white" style="font-size:1rem" [disabled]="loginForm.form.invalid">Login</button>
-    </mat-dialog-actions>
-  </form>
-  
+<body>
+    <div class="cont_img_back_grey">
+        <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
+    </div>
+<form novalidate [formGroup]="LoginForm" #fform="ngForm" (ngSubmit)="onSubmit()">
+    <p>
+        <mat-form-field class="full-width" appearance="none" >
+            <input matInput formControlName="email" placeholder="Email" type="email" email required>
+            <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+          </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="full-width" appearance="none">
+            <input matInput formControlName="password" placeholder="Password" type="password"  required>
+            <mat-error *ngIf="formErrors.password">{{formErrors.password}}</mat-error>
+          </mat-form-field>
+    </p>
+    <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
+    <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
+</form>
+</body>

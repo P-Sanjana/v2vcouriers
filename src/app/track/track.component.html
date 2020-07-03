@@ -7,7 +7,7 @@
         <mat-grid-tile>
             <form novalidate *ngIf="!submitted" [formGroup]="idForm" #fform="ngForm" >
                 <p>
-                    <mat-form-field >
+                    <mat-form-field appearance="none">
                         <input matInput formControlName="consignment" placeholder="Consignment Number"  type="text" pattern="[0-9]*" required>
                         <mat-error *ngIf="formErrors.consignment">{{formErrors.consignment}}</mat-error>
                       </mat-form-field>

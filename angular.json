@@ -29,9 +29,13 @@
             "styles": [
               "src/styles.scss",
               "./node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/materialize-css/dist/css/materialize.css"
             ],
             "scripts": [
-              
+              "src/assets/js/login.js",
+              "node_modules/materialize-css/dist/js/materialize.js",
+              "node_modules/jquery/dist/jquery.js",
+       "node_modules/hammerjs/hammer.js"
             ]
           },
           "configurations": {

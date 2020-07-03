@@ -2,36 +2,36 @@
 <h4>Fill in the form to post a courier</h4>
 <form  novalidate [formGroup]="pickupForm" #fform="ngForm" (ngSubmit)="onSubmit()">
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="Sendername"  placeholder="Sender's Name"  type="text" required>
             <mat-error *ngIf="formErrors.Sendername">{{formErrors.Sendername}}</mat-error>
         </mat-form-field>
     </p> 
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="mail" placeholder="Email" type="email"  email required>
             <mat-error *ngIf="formErrors.mail">{{formErrors.mail}}</mat-error>
           </mat-form-field>
-          <mat-form-field class="half-width">
+          <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="phNumber" placeholder="Phone Number"  type="tel" pattern="[0-9]*" required>
             <mat-error *ngIf="formErrors.phNumber">{{formErrors.phNumber}}</mat-error>
           </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
           <input matInput formControlName="Senderaddress" placeholder="Sender's Address"  type="text" required>
           <mat-error *ngIf="formErrors.Senderaddress">{{formErrors.Senderaddress}}</mat-error>
       </mat-form-field>
   </p>
   <table class="form-size">
     <td>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
         <input matInput formControlName="Sendercity" placeholder="Sender's City"  type="text" required>
         <mat-error *ngIf="formErrors.Sendercity">{{formErrors.Sendercity}}</mat-error>
     </mat-form-field>
     </td>
     <td>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
         <input matInput formControlName="Senderstate"  placeholder="Sender's State"  type="text" required>
         <mat-error *ngIf="formErrors.Senderstate">{{formErrors.Senderstate}}</mat-error>
     </mat-form-field>
@@ -50,32 +50,32 @@
       </td>
       </table>
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="repname" placeholder=" Recipient Name"  type="text" required>
             <mat-error *ngIf="formErrors.repname">{{formErrors.repname}}</mat-error>
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="repphNumber" placeholder=" Recipient Phone Number"  type="tel" pattern="[0-9]*" required>
             <mat-error *ngIf="formErrors.repphNumber">{{formErrors.repphNumber}}</mat-error>
           </mat-form-field>
     </p>
     <p>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
           <input matInput formControlName="repaddress" placeholder=" Recipient Address"  type="text" required>
           <mat-error *ngIf="formErrors.repaddress">{{formErrors.repaddress}}</mat-error>
       </mat-form-field>
   </p>
   <table class="form-size">
     <td>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
         <input matInput formControlName="repcity"  placeholder="Recipient City" type="text" required>
         <mat-error *ngIf="formErrors.repcity">{{formErrors.repcity}}</mat-error>
     </mat-form-field>
     </td>
     <td>
-      <mat-form-field class="half-width">
+      <mat-form-field class="half-width" appearance="none">
         <input matInput formControlName="repstate"  placeholder="Recipient State"  type="text" required>
         <mat-error *ngIf="formErrors.repstate">{{formErrors.repstate}}</mat-error>
     </mat-form-field>
@@ -94,7 +94,7 @@
       </td> 
       </table>
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
         <mat-label>Pick a Date</mat-label>
         <input matInput formControlName="pickupdate" [matDatepicker]="picker"   required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -103,11 +103,11 @@
         </mat-form-field>
     </p>
     <p>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
           <input matInput formControlName="wt"  placeholder="Weight"  type="text" required>
           <mat-error *ngIf="formErrors.wt">{{formErrors.wt}}</mat-error>  
         </mat-form-field>
-        <mat-form-field class="half-width">
+        <mat-form-field class="half-width" appearance="none">
             <input matInput formControlName="vol"  placeholder="Volume"  type="text" required>
             <mat-error *ngIf="formErrors.vol">{{formErrors.vol}}</mat-error>  
           </mat-form-field>

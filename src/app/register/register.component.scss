@@ -1,11 +1,12 @@
 .full-width {
     width: 95%
 }
-body{
-    background-color: #eee;  
+
+.half-width {
+    width: 45%
 }
-*:focus {
-    outline: none;
+body{
+    background-color: #eee;
 }
 .cont_img_back_grey {
     position: absolute;

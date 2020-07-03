@@ -10,7 +10,7 @@ $background-pale: #a8dadc;
 
 .footer{
     background-color: $background-pale;
-    @include zero-margin(20px, 0px);
+    @include zero-margin(0px, 0px);
 
 }
 .container{

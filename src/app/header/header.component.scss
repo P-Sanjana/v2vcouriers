@@ -19,8 +19,9 @@ $background-moredark: #355070  ;
     background: $background-moredark;
 }
 .serif {
-    font-size:1rem;
+    font-size:16px;
     color:floralwhite;
+    font-family: Arial, Helvetica, sans-serif;
   }
   a.serif:link
   {
@@ -53,46 +54,4 @@ $background-moredark: #355070  ;
   
     display:flex;
   }
-  .searchbar{
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 60px;
-    background-color: #a8dadc;
-    border-radius: 30px;
-    padding: 10px;
-    }
-
-    .search_input{
-    color: black;
-    border: 0;
-    outline: 0;
-    background: #a8dadc;
-    width: 0;
-    caret-color:transparent;
-    line-height: 40px;
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 450px;
-    caret-color:red;
-    transition: width 0.4s linear;
-    }
-
-    .searchbar:hover > .search_icon{
-    background: white;
-    color: #e74c3c;
-    }
-
-    .search_icon{
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color:white;
-    text-decoration:none;
-    }
+  
