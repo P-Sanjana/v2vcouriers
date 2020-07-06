@@ -10,12 +10,12 @@
   <a mat-button routerLink="/about" class="serif" routerLinkActive="active"><i class="fa fa-info icon-5x"></i><b>About</b></a>
   <a mat-button *ngIf="isUser" routerLink="/courierrequest" class="serif" routerLinkActive="active" ><i class="fa fa-envelope icon-5x"></i><b>CourierRequest</b></a>
   <a mat-button *ngIf="isUser" routerLink="/track" class="serif" routerLinkActive="active" ><i class="fa fa-location-arrow icon-5x"></i><b>Track</b></a>
-  <a mat-button *ngIf="isAdmin" routerLink="/dashboard" class="serif" routerLinkActive="active" ><i class="fa fa-location-arrow icon-5x"></i><b>Dashboard</b></a>
-  <a mat-button *ngIf="isCourierBoy" routerLink="/dashboardcboy" class="serif" routerLinkActive="active" ><i class="fa fa-location-arrow icon-5x"></i><b>Dashboard</b></a>
+  <a mat-button *ngIf="isAdmin" routerLink="/dashboard" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b>Dashboard</b></a>
+  <a mat-button *ngIf="isCourierBoy" routerLink="/dashboardcboy" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b>Dashboard</b></a>
   <a mat-button routerLink="/contactus" class="serif" routerLinkActive="active" ><i class="fa fa-address-card icon-5x"></i><b>Contact</b></a>
   <span class="flex-spacer"></span>
   <a mat-button routerLink="/start" class="serif" routerLinkActive="active"><i class="fa fa-user-alt icon-5x"></i><b> Login or SignUp</b></a>
-  <a mat-button (click)="logout()">Logout</a>
+  <a mat-button (click)="logout()"><b>Logout</b></a>
 </mat-toolbar>
 <div class="container1 jumbotron"
     fxLayout="row"

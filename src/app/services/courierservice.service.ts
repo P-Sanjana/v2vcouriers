@@ -50,7 +50,7 @@ export class CourierserviceService {
       this.courier.repstate=pickupForm.value.repstate;
       this.courier.courierservice=pickupForm.value.courierservice;
       this.courier.pickupdate=pickupForm.value.pickupdate;
-      this.courier.status="Yet to receive";
+      this.courier.status="Yet to accept";
       this.courier.wt=pickupForm.value.wt;
       this.courier.vol=pickupForm.value.vol;
       this.courier.price=String(p);
