@@ -1,22 +1,23 @@
-import { Component, OnInit ,ViewChild} from '@angular/core';
+import { Component, OnInit ,ViewChild,Inject} from '@angular/core';
 import {MatDialog, MatDialogRef} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {User} from '../shared/user';
-import {Login} from '../login';
-import {routes} from '../app-routing/routes';
-import {AuthService} from '../services/auth.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { first } from 'rxjs/operators';
+
+import { AlertService } from '../services/alert.service';
+import {AuthenticationService} from '../services/authentication.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  @ViewChild('fform') LoginFormDirective;
+  @ViewChild('fform') LoginFormDirective: { resetForm: () => void; };
   LoginForm:FormGroup;
-  message: string;
-  returnUrl: string;
-  model: Login = { email: "xyz@abc.com", password: "Sanj333#" };
+  loading = false;
+    submitted = false;
+    returnUrl: string;
+    error = '';
   formErrors = {
     'email': '',
     'password':''
@@ -32,39 +33,25 @@ export class LoginComponent implements OnInit {
       'pattern':        'Password must contain at least one uppercase, one lowercase, and one number'
     }
   };
-  constructor(private fb: FormBuilder,private router: Router, public authService: AuthService) { 
+  constructor(private fb: FormBuilder,private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService,@Inject('BASE_URL') private baseURL:"http://localhost:3000/") { 
     this.createForm();
+    if (this.authenticationService.currentUserValue) { 
+      this.router.navigate(['/']);
   }
-  get f() { return this.LoginForm.controls; }
+  }
   createForm(){
     this.LoginForm=this.fb.group({
       email: ['', [Validators.required, Validators.email] ],
       password:['',[Validators.required, Validators.minLength(8),Validators.pattern]],
     });
-    this.authService.logout();
     this.LoginForm.valueChanges
     .subscribe(data => this.onValueChanged(data));
     this.onValueChanged();
   }
-  login() {
-
-    // stop here if form is invalid
-    if (this.LoginForm.invalid) {
-        return;
-    }
-    else{
-      if(this.f.userid.value == this.model.email && this.f.password.value == this.model.password){
-        console.log("Login successful");
-        //this.authService.authLogin(this.model);
-        localStorage.setItem('isLoggedIn', "true");
-        localStorage.setItem('token', this.f.userid.value);
-        this.router.navigate([this.returnUrl]);
-      }
-      else{
-        this.message = "Please check your email and password";
-      }
-    }    
-}
+  
   onValueChanged(data?: any) {
     if (!this.LoginForm) { return; }
     const form = this.LoginForm;
@@ -84,15 +71,34 @@ export class LoginComponent implements OnInit {
       }
     }
   }
+  get f() { return this.LoginForm.controls; }
   onSubmit() {
+    this.submitted = true;
+
+        // stop here if form is invalid
+        if (this.LoginForm.invalid) {
+            return;
+        }
+
+        this.loading = true;
+        this.authenticationService.login(this.LoginForm.value.email, this.LoginForm.value.password)
+            .pipe(first())
+            .subscribe(
+                data => {
+                    this.router.navigate([this.returnUrl]);
+                },
+                error => {
+                  this.error = error;
+                    this.loading = false;
+                });
     this.LoginForm.reset({
       email: '',
       password:'',
     });
     this.LoginFormDirective.resetForm();
   }
+ 
   ngOnInit() {
-    
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-  
 }

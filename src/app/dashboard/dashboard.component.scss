@@ -1,0 +1,71 @@
+$lt-gray: #ddd;
+$background-dark: #1d3557 ;
+$background-light: #457b9d  ;
+$background-pale: #a8dadc ;
+$background-moredark: #355070  ;
+mat-sidenav {
+    width: auto;
+    padding:15px;
+}
+.mat-drawer { 
+    background-color: #1d3557;
+    color:#fff
+}
+.main-content {
+    padding:20px;
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+.vertical-menu {
+    width: 150px; /* Set a width if you like */
+  }
+  
+  .vertical-menu a {
+    /* Grey background color */
+    /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+  }
+  .serif {
+    font-size:16px;
+    color:floralwhite;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  a.serif:link
+  {
+     background-color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:visited
+  {
+     color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:hover
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:active
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  .white-box{background:#fff;padding:25px;margin-bottom:30px}.white-box .box-title{margin:0 0 12px;font-weight:500;text-transform:uppercase;font-size:16px}
+  .analytics-info .list-inline{margin-bottom:0}.analytics-info .list-inline li{vertical-align:middle}.analytics-info .list-inline li span{font-size:24px}.analytics-info .list-inline li i{font-size:20px}
+  .two-part li{width:48.8%}.two-part li i{font-size:50px}.two-part li span{font-size:50px;font-weight:100;font-family:Rubik,sans-serif}
+  .text-success{color:#7ace4c}
+.text-purple{color:#707cd2}
+.text-info{color:#41b3f9}
+.text-inverse{color:#4c5667}
+.chart{
+  width:700px;
+  height: 500px;
+ padding-left: 100px;
+}

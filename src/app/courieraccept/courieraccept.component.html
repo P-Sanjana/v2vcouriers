@@ -1,0 +1,29 @@
+<pre>
+  Consignment No                                  Sender Info                                     Receiver Info                                              Status                   Accept
+</pre>
+<table>
+  <p *ngFor="let courier of couriers">
+    <tr>
+    <td>{{courier.id|json}}</td>
+    <td>{{courier.Sendername|json}} 
+      {{courier.mail|json}} 
+    {{courier.phNumber|json}}
+  {{courier.Senderaddress|json}}
+{{courier.Sendercity|json}}
+{{courier.Senderstate|json}}</td>
+<td>
+  {{courier.repname|json}}
+  {{courier.repphNumber|json}}
+  {{courier.repaddress|json}}
+  {{courier.repcity|json}}
+  {{courier.repstate|json}}
+</td>
+<td>
+  {{courier.status|json}}
+</td>
+<td>
+  <button type="button" mat-raised-button class=" text-floral-white" style="background-color:green"  (click)='accepted(courier)'>Accept</button>
+</td>
+    </tr>
+  </p>
+</table>

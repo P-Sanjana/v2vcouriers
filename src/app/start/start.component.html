@@ -1,6 +1,7 @@
 <head>
  
-  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -32,13 +33,17 @@
          <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
          </div>
    <div class="cont_form_login">
-  <a href="#" onclick="ocultar_login_sign_up()" >Close</a>
+  <a routerLink="/start" onclick="ocultar_login_sign_up()" ><span class="material-icons">
+    close
+    </span></a>
      <h2>LOGIN</h2>
      <app-login></app-login>
   <!--<button class="btn_login" onclick="cambiar_login()">LOGIN</button>-->
     </div>
      <div class="cont_form_sign_up">
-  <a href="#" onclick="ocultar_login_sign_up()">Close</a>
+  <a href="#" onclick="ocultar_login_sign_up()"><span class="material-icons">
+    close
+    </span></a>
        <h2>SIGN UP</h2>
   <app-register></app-register>
   <!--<button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>-->

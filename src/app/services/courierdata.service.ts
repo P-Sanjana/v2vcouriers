@@ -30,4 +30,8 @@ export class CourierdataService {
     return this.http.delete(this.baseURL+'couriers/'+id).pipe(
       catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
   }
+  getAllCouriers():Observable<Courier[]>{
+    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to receive').pipe(
+      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  }
 }

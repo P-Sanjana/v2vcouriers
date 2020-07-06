@@ -7,19 +7,27 @@ import {Inject, Injectable} from '@angular/core';
 import {CourierserviceService} from '../services/courierservice.service';
 import {CourierdataService} from '../services/courierdata.service';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
+import { first } from 'rxjs/operators';
+
+import { User } from '../_models/user';
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-courierrequest',
   templateUrl: './courierrequest.component.html',
   styleUrls: ['./courierrequest.component.scss'],
 })
 export class CourierrequestComponent implements OnInit {
-  @ViewChild('fform') pickupFormDirective;
+  currentUser: User;
+    userFromApi: User;
+    users: User[] = [];
+  @ViewChild('fform') pickupFormDirective: any;
   pickupForm:FormGroup;
   courier:Courier;
   contacttype=ContactType;
-  courierservice;
+  courierservice: Observable<string[]>;
   submitted=false;
-  courierfromjson;
+  courierfromjson: any;
   mail:string;
   p:string;
   addedcourier:Courier;
@@ -96,14 +104,19 @@ export class CourierrequestComponent implements OnInit {
     },
   }
   constructor(private fb: FormBuilder,private couriertype:CouriertypeService,
-  private courierserviceservice:CourierserviceService,private courierdata:CourierdataService) { 
+  private courierserviceservice:CourierserviceService,private courierdata:CourierdataService,private userService: UserService,
+  private authenticationService: AuthenticationService) { 
     this.createForm();
+    this.currentUser = this.authenticationService.currentUserValue;
     this.courier=new Courier();
   }
   ngOnInit() {
-    
+    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
+      this.userFromApi = user;
+  });
     this.courierservice=this.couriertype.getcouriertype();
   }
+  
   createForm() {
     this.pickupForm=this.fb.group({
       Sendername:['',[Validators.required,Validators.minLength(2),Validators.maxLength(25)]],

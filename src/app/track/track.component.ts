@@ -3,28 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CourierdataService} from '../services/courierdata.service';
 import {Courier} from '../shared/courier';
+import { User } from '../_models/user';
+import { UserService } from '../services/user.service';
+import { first } from 'rxjs/operators';
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-track',
   templateUrl: './track.component.html',
   styleUrls: ['./track.component.scss']
 })
 export class TrackComponent implements OnInit {
-  @ViewChild('fform') idFormDirective;
+  currentUser: User;
+  userFromApi: User;
+    users: User[] = [];
+  @ViewChild('fform') idFormDirective: any;
   image:string;
   idForm:FormGroup;
   submitted=false;
   courier:Courier;
-  trackvalues;
+  trackvalues: Object[];
   status:string;
-  tracks;
+  tracks: string[];
   done="done";
   constructor(@Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,private fb: FormBuilder,
-  private courierdata:CourierdataService) {
+  private courierdata:CourierdataService,private userService: UserService,private authenticationService: AuthenticationService) {
     this.createForm();
+    this.currentUser = this.authenticationService.currentUserValue;
     this.courier=new Courier();
    }
   ngOnInit() {
     this.image=this.baseURL+"images/tracker.jpg";
+    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
+      this.userFromApi = user;
+  });
     this.courierdata.gettracks().subscribe(tracks=>this.tracks=tracks);
     this.courierdata.gettrackvalues().subscribe(trackvalues=>this.trackvalues=trackvalues);
   }
@@ -45,6 +56,12 @@ export class TrackComponent implements OnInit {
       .subscribe(data => this.onValueChanged(data));
       this.onValueChanged();
   }
+
+private loadAllUsers() {
+    this.userService.getAll().pipe(first()).subscribe(users => { 
+        this.users = users; 
+    });
+}
   onValueChanged(data?: any) {
     if (!this.idForm) { return; }
     const form = this.idForm;

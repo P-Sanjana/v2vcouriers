@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SvgbarComponent } from './svgbar.component';
+import { AdminprofileComponent } from './adminprofile.component';
 
-describe('SvgbarComponent', () => {
-  let component: SvgbarComponent;
-  let fixture: ComponentFixture<SvgbarComponent>;
+describe('AdminprofileComponent', () => {
+  let component: AdminprofileComponent;
+  let fixture: ComponentFixture<AdminprofileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SvgbarComponent ]
+      declarations: [ AdminprofileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SvgbarComponent);
+    fixture = TestBed.createComponent(AdminprofileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

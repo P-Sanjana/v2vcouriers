@@ -1,16 +1,23 @@
 import { Component, OnInit ,ViewChild} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {User} from '../shared/user';
 import {UserserviceService} from '../services/userservice.service';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
+
+import { AlertService } from '../services/alert.service';
+import {UserService } from '../services/user.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  @ViewChild('fform') RegisterFormDirective;
+  @ViewChild('fform') RegisterFormDirective: { resetForm: () => void; };
   RegisterForm:FormGroup;
   registered=false;
+  loading = false;
+  submitted = false;
+
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -38,7 +45,9 @@ export class RegisterComponent implements OnInit {
       'pattern':        'Password must contains one uppercase, one lowercase, one number,one special character',
     }
   };
-  constructor(private fb: FormBuilder,private userservice:UserserviceService) {
+  constructor(private fb: FormBuilder,private userservice:UserserviceService,private router: Router,
+    private userService: UserService,
+    private alertService: AlertService) {
     this.createForm();
    }
    createForm() {
@@ -53,6 +62,7 @@ export class RegisterComponent implements OnInit {
 
     this.onValueChanged(); // (re)set validation messages now
   }
+  get f() { return this.RegisterForm.controls; }
   onValueChanged(data?: any) {
     if (!this.RegisterForm) { return; }
     const form = this.RegisterForm;
@@ -74,17 +84,18 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     this.registered=true;
+    this.submitted = true;
+
+        // stop here if form is invalid
+        
     this.userservice.newUser(this.RegisterForm).subscribe(res=>{
       console.log(res);
     });
     this.RegisterForm.reset({
       firstname: '',
       lastname: '',
-      telnum: '',
       email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
+      password:''
     });
     this.RegisterFormDirective.resetForm();
   }
