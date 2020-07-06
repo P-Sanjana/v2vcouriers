@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit {
 get isUser(){
   return this.currentUser && this.currentUser.role==Role.User;
 }
+get isCourierBoy(){
+  return this.currentUser && this.currentUser.role==Role.CourierBoy;
+}
 logout() {
   this.authenticationService.logout();
   this.router.navigate(['/start']);

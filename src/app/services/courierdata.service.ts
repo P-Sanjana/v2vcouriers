@@ -31,7 +31,19 @@ export class CourierdataService {
       catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
   }
   getAllCouriers():Observable<Courier[]>{
-    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to receive').pipe(
+    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to accept').pipe(
       catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  }
+  getCouriersStatus():Observable<Courier[]>{
+    return this.http.get<Courier[]>(this.baseURL+'couriers?status=In Progress').pipe(
+      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
+  }
+  getCourierreceive():Observable<Courier[]>{
+    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to receive').pipe(
+      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
+  }
+  getCourierdelivery():Observable<Courier[]>{
+    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Ready to Deliver').pipe(
+      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
   }
 }

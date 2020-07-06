@@ -12,6 +12,10 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 import { Role } from '../_models/role';
 import { AdminprofileComponent } from '../adminprofile/adminprofile.component';
 import { CourieracceptComponent } from '../courieraccept/courieraccept.component';
+import { CourierdeliverComponent } from '../courierdeliver/courierdeliver.component';
+import { CourierreceiveComponent } from '../courierreceive/courierreceive.component';
+import { DashboardcboyComponent } from '../dashboardcboy/dashboardcboy.component';
+import { CourierboydeliveryComponent } from '../courierboydelivery/courierboydelivery.component';
 export const routes: Routes = [
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
@@ -25,4 +29,8 @@ export const routes: Routes = [
     {path:'dashboard',component:DashboardComponent,canActivate: [AuthGuard],data: { roles: [Role.Admin] } },
     {path:'adminprofile',component:AdminprofileComponent},
     {path:'courieraccept',component:CourieracceptComponent},
+    {path:'courierdeliver',component:CourierdeliverComponent},
+    {path:'courierreceive',component:CourierreceiveComponent,canActivate:[AuthGuard],data:{roles:[Role.CourierBoy]}},
+    {path:'dashboardcboy',component:DashboardcboyComponent,canActivate:[AuthGuard],data:{roles:[Role.CourierBoy]}},
+    {path:'courierboydelivery',component:CourierboydeliveryComponent,canActivate:[AuthGuard],data:{roles:[Role.CourierBoy]}},
   ];

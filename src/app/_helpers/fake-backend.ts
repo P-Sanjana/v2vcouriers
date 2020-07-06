@@ -10,7 +10,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const users: User[] = [
             { id: 1, email: 'admin@gmail.com', password: 'Qwerty333#', firstName: 'Admin', lastName: 'User', role: Role.Admin },
-            { id: 2, email: 'user@gmail.com', password: 'Qwerty333#', firstName: 'Normal', lastName: 'User', role: Role.User }
+            { id: 2, email: 'user@gmail.com', password: 'Qwerty333#', firstName: 'Normal', lastName: 'User', role: Role.User },
+            { id: 3, email: 'courierboy@gmail.com', password: 'Qwerty333#', firstName:'CourierBoy', lastName:'User', role:Role.CourierBoy  }
         ];
 
         const authHeader = request.headers.get('Authorization');

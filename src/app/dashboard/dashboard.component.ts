@@ -5,6 +5,8 @@ import { UserService } from '../services/user.service';
 import { Chart } from 'chart.js';
 import {Data} from '../shared/data';
 import { HttpClient } from '@angular/common/http';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -17,7 +19,7 @@ export class DashboardComponent implements OnInit {
   month = [];
   price = [];
   chart = [];
-  constructor(private userService: UserService,private http:HttpClient) { }
+  constructor(private userService: UserService,private http:HttpClient,private authenticationService: AuthenticationService,private router: Router) { }
 
   ngOnInit() {
     this.userService.getAll().pipe(first()).subscribe(users => { 
@@ -56,5 +58,8 @@ export class DashboardComponent implements OnInit {
     });
   });
   }
-
+  logout() {
+    this.authenticationService.logout();
+    this.router.navigate(['/start']);
+  }
 }

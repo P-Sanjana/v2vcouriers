@@ -51,6 +51,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material';
 import { AdminprofileComponent } from './adminprofile/adminprofile.component';
 import { CourieracceptComponent } from './courieraccept/courieraccept.component';
+import { CourierdeliverComponent } from './courierdeliver/courierdeliver.component';
+import { CourierreceiveComponent } from './courierreceive/courierreceive.component';
+import { DashboardcboyComponent } from './dashboardcboy/dashboardcboy.component';
+import { CourierboydeliveryComponent } from './courierboydelivery/courierboydelivery.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,10 @@ import { CourieracceptComponent } from './courieraccept/courieraccept.component'
     DashboardComponent,
     AdminprofileComponent,
     CourieracceptComponent,
+    CourierdeliverComponent,
+    CourierreceiveComponent,
+    DashboardcboyComponent,
+    CourierboydeliveryComponent,
   ],
   imports: [
     BrowserModule,
