@@ -5,12 +5,12 @@
 <form  novalidate [formGroup]="RegisterForm" #fform="ngForm" (ngSubmit)="onSubmit()">
   <p>
     <mat-form-field class="half-width" appearance="none">
-      <input matInput formControlName="firstname" placeholder="First Name" type="text" required>
-      <mat-error *ngIf="formErrors.firstname">{{formErrors.firstname}}</mat-error>
+      <input matInput formControlName="name" placeholder="Your Name" type="text" required>
+      <mat-error *ngIf="formErrors.name">{{formErrors.name}}</mat-error>
     </mat-form-field>
     <mat-form-field class="half-width" appearance="none">
-      <input matInput formControlName="lastname" placeholder="Last Name" type="text" required>
-      <mat-error *ngIf="formErrors.lastname">{{formErrors.lastname}}</mat-error>
+      <input matInput formControlName="username" placeholder="User Name" type="text" required>
+      <mat-error *ngIf="formErrors.username">{{formErrors.username}}</mat-error>
     </mat-form-field>
   </p>
   <p>
@@ -27,5 +27,8 @@
   </p>
   <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
       <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
-</form>
+      <div *ngIf="fform.submitted && isSignUpFailed">
+        Signup failed!<br/>{{errorMessage}}
+      </div>
+    </form>
 </body>

@@ -1,7 +1,3 @@
-<head>
-    <script src="//code.jquery.com/jquery.min.js"></script>
-<script src="animationCounter.js"></script>
-</head>
 <body>
 <mat-sidenav-container fullscreen>
   <mat-sidenav class="vertical-menu" mode="side" #sidenav opened position="start">
@@ -66,23 +62,6 @@
           </div>
       </div>
   </div>
-  <div *ngIf="chart" class="chart">
-    <canvas id="canvas">{{ chart }}</canvas>
-  </div>
-
   </mat-sidenav-content>
 </mat-sidenav-container>
-<script>
- $('.counter').each(function () {
-    $(this).prop('Counter', 0).animate({
-            Counter: $(this).data('value')
-        }, {
-        duration: 1000,
-        easing: 'swing',
-        step: function (now) {                      
-            $(this).text(this.Counter.toFixed(2));
-        }
-    });
-});
-</script>
 </body>

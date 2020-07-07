@@ -5,12 +5,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { fakeBackendProvider } from './_helpers/fake-backend';
-import { AuthGuard } from './_guards/auth.guard';
-import {  ErrorInterceptor } from './_helpers/error.interceptor';
-import { JwtInterceptor} from './_helpers/jwt.interceptor';
-import { AlertService  } from './services/alert.service';
-import {  AuthenticationService } from './services/authentication.service';
+import {AuthenticationService } from './auth/authentication.service';
+import {TokenStorageService} from './auth/token-storage.service';
 import { UserService } from './services/user.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
@@ -25,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
@@ -107,14 +104,8 @@ import { CourierboydeliveryComponent } from './courierboydelivery/courierboydeli
     LoginComponent
 ],
   providers: [CouriertypeService,CourierserviceService,{provide: 'BASE_URL', useValue: 'http://localhost:3000/'},
-  UserserviceService,CourierdataService,AuthGuard,
-  AlertService,
-  AuthenticationService,
-  UserService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-
-  // provider used to create fake backend
-  fakeBackendProvider],
+  UserserviceService,CourierdataService,httpInterceptorProviders,AuthenticationService,TokenStorageService,
+  UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

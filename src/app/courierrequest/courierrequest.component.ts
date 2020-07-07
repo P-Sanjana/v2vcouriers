@@ -11,7 +11,7 @@ import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
 
 import { User } from '../_models/user';
-import { AuthenticationService } from '../services/authentication.service';
+
 @Component({
   selector: 'app-courierrequest',
   templateUrl: './courierrequest.component.html',
@@ -104,16 +104,13 @@ export class CourierrequestComponent implements OnInit {
     },
   }
   constructor(private fb: FormBuilder,private couriertype:CouriertypeService,
-  private courierserviceservice:CourierserviceService,private courierdata:CourierdataService,private userService: UserService,
-  private authenticationService: AuthenticationService) { 
+  private courierserviceservice:CourierserviceService,private courierdata:CourierdataService,private userService: UserService) { 
     this.createForm();
-    this.currentUser = this.authenticationService.currentUserValue;
+   
     this.courier=new Courier();
   }
   ngOnInit() {
-    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
-      this.userFromApi = user;
-  });
+   
     this.courierservice=this.couriertype.getcouriertype();
   }
   

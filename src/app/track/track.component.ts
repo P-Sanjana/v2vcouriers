@@ -6,7 +6,6 @@ import {Courier} from '../shared/courier';
 import { User } from '../_models/user';
 import { UserService } from '../services/user.service';
 import { first } from 'rxjs/operators';
-import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-track',
   templateUrl: './track.component.html',
@@ -26,16 +25,12 @@ export class TrackComponent implements OnInit {
   tracks: string[];
   done="done";
   constructor(@Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,private fb: FormBuilder,
-  private courierdata:CourierdataService,private userService: UserService,private authenticationService: AuthenticationService) {
+  private courierdata:CourierdataService,private userService: UserService) {
     this.createForm();
-    this.currentUser = this.authenticationService.currentUserValue;
     this.courier=new Courier();
    }
   ngOnInit() {
     this.image=this.baseURL+"images/tracker.jpg";
-    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
-      this.userFromApi = user;
-  });
     this.courierdata.gettracks().subscribe(tracks=>this.tracks=tracks);
     this.courierdata.gettrackvalues().subscribe(trackvalues=>this.trackvalues=trackvalues);
   }
@@ -58,9 +53,7 @@ export class TrackComponent implements OnInit {
   }
 
 private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => { 
-        this.users = users; 
-    });
+   
 }
   onValueChanged(data?: any) {
     if (!this.idForm) { return; }

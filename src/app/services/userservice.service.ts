@@ -14,7 +14,7 @@ export class UserserviceService {
     this.user=new User();
    }
   getuserdata():Observable<User[]>{
-    return this.http.get<User[]>(this.baseURL+'users').pipe(
+    return this.http.get<User[]>('http://localhost:8080/users').pipe(
       catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
   }
   getuserbymail(mail:string):Observable<User>{

@@ -5,8 +5,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { couriers } from '../shared/couriers';
 import { Router } from '@angular/router';
-
-import { AuthenticationService } from '../services/authentication.service';
+import { TokenStorageService } from '../auth/token-storage.service';
 import { Role } from '../_models/role';
 import { User } from '../_models/user';
 @Component({
@@ -16,26 +15,34 @@ import { User } from '../_models/user';
 })
 export class HeaderComponent implements OnInit {
   image:string;
-  currentUser: User;
-  constructor( private router: Router,
-    private authenticationService: AuthenticationService, @Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+  private roles: string[];
+  private authority: string;
+  constructor( private router: Router, @Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,
+  private tokenStorage: TokenStorageService) {
+     
      }
 
   ngOnInit(){
+    tokenStotage: this.tokenStorage.getToken();
     this.image=this.baseURL+"images/courier3.jpg";
+    if (this.tokenStorage.getToken()) {
+      this.roles = this.tokenStorage.getAuthorities();
+      this.roles.every(role => {
+        if (role === 'ROLE_ADMIN') {
+          this.authority = 'admin';
+          return false;
+        } else if (role === 'ROLE_PM') {
+          this.authority = 'pm';
+          return false;
+        }
+        this.authority = 'ROLE_USER';
+        return true;
+      });
+    }
   }
-  get isAdmin() {
-    return this.currentUser && this.currentUser.role === Role.Admin;
-}
-get isUser(){
-  return this.currentUser && this.currentUser.role==Role.User;
-}
-get isCourierBoy(){
-  return this.currentUser && this.currentUser.role==Role.CourierBoy;
-}
-logout() {
-  this.authenticationService.logout();
-  this.router.navigate(['/start']);
-}
+ 
+  logout() {
+    this.tokenStorage.signOut();
+    window.location.reload();
+  }
 }

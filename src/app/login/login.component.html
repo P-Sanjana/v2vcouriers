@@ -5,8 +5,8 @@
 <form novalidate [formGroup]="LoginForm" #fform="ngForm" (ngSubmit)="onSubmit()">
     <p>
         <mat-form-field class="full-width" appearance="none" >
-            <input matInput formControlName="email" placeholder="Email" type="email" email required>
-            <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
+            <input matInput formControlName="username" placeholder="Username" type="text" required>
+            <mat-error *ngIf="formErrors.username">{{formErrors.username}}</mat-error>
           </mat-form-field>
     </p>
     <p>
@@ -17,5 +17,8 @@
     </p>
     <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
     <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
+    <div *ngIf="fform.submitted && isLoginFailed" >
+        Login failed: {{errorMessage}}
+      </div>
 </form>
 </body>

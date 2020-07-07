@@ -6,6 +6,8 @@ import { first } from 'rxjs/operators';
 
 import { AlertService } from '../services/alert.service';
 import {UserService } from '../services/user.service';
+import { SignUpInfo } from '../auth/signup-info';
+import { AuthenticationService } from '../auth/authentication.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -14,23 +16,24 @@ import {UserService } from '../services/user.service';
 export class RegisterComponent implements OnInit {
   @ViewChild('fform') RegisterFormDirective: { resetForm: () => void; };
   RegisterForm:FormGroup;
-  registered=false;
-  loading = false;
-  submitted = false;
+  signupInfo: SignUpInfo;
+  isSignedUp = false;
+  isSignUpFailed = false;
+  errorMessage = '';
 
   formErrors = {
-    'firstname': '',
-    'lastname': '',
+    'name': '',
+    'username': '',
     'email': '',
     'password':'',
   };
   validationMessages = {
-    'firstname': {
+    'name': {
       'required':      'First Name is required.',
       'minlength':     'First Name must be at least 2 characters long.',
       'maxlength':     'FirstName cannot be more than 25 characters long.'
     },
-    'lastname': {
+    'username': {
       'required':      'Last Name is required.',
       'minlength':     'Last Name must be at least 2 characters long.',
       'maxlength':     'Last Name cannot be more than 25 characters long.'
@@ -45,15 +48,13 @@ export class RegisterComponent implements OnInit {
       'pattern':        'Password must contains one uppercase, one lowercase, one number,one special character',
     }
   };
-  constructor(private fb: FormBuilder,private userservice:UserserviceService,private router: Router,
-    private userService: UserService,
-    private alertService: AlertService) {
+  constructor(private fb: FormBuilder,private authService: AuthenticationService) {
     this.createForm();
    }
    createForm() {
     this.RegisterForm = this.fb.group({
-      firstname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
-      lastname: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
+      username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)] ],
       email: ['', [Validators.required, Validators.email] ],
       password:['',[Validators.required,Validators.pattern,Validators.minLength]],
     });
@@ -62,7 +63,6 @@ export class RegisterComponent implements OnInit {
 
     this.onValueChanged(); // (re)set validation messages now
   }
-  get f() { return this.RegisterForm.controls; }
   onValueChanged(data?: any) {
     if (!this.RegisterForm) { return; }
     const form = this.RegisterForm;
@@ -83,14 +83,25 @@ export class RegisterComponent implements OnInit {
     }
   }
   onSubmit() {
-    this.registered=true;
-    this.submitted = true;
+    console.log(this.RegisterForm.value);
 
-        // stop here if form is invalid
-        
-    this.userservice.newUser(this.RegisterForm).subscribe(res=>{
-      console.log(res);
-    });
+    this.signupInfo = new SignUpInfo(
+      this.RegisterForm.value.name,
+      this.RegisterForm.value.username,
+      this.RegisterForm.value.email,
+      this.RegisterForm.value.password);
+      this.authService.signUp(this.signupInfo).subscribe(
+        data => {
+          console.log(data);
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        }
+      );
     this.RegisterForm.reset({
       firstname: '',
       lastname: '',

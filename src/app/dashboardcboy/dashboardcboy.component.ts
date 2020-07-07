@@ -1,31 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../_models/user';
-import { AuthenticationService } from '../services/authentication.service';
-import { UserService } from '../services/user.service';
-import { first } from 'rxjs/operators';
-import { Router } from '@angular/router';
-
+import { TokenStorageService } from '../auth/token-storage.service';
 @Component({
   selector: 'app-dashboardcboy',
   templateUrl: './dashboardcboy.component.html',
   styleUrls: ['./dashboardcboy.component.scss']
 })
 export class DashboardcboyComponent implements OnInit {
-  currentUser: User;
-  userFromApi: User;
-  users: User[] = [];
-  constructor(private authenticationService: AuthenticationService,private userService: UserService,
-    private router: Router) {
-    this.currentUser = this.authenticationService.currentUserValue;
+  constructor(private token: TokenStorageService) {
    }
 
   ngOnInit() {
-    this.userService.getById(this.currentUser.id).pipe(first()).subscribe(user => { 
-      this.userFromApi = user;
-  });
+    token: this.token.getToken();
   }
   logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/start']);
+    this.token.signOut();
+    window.location.reload();
   }
 }

@@ -3,9 +3,9 @@ import {MatDialog, MatDialogRef} from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
-
-import { AlertService } from '../services/alert.service';
-import {AuthenticationService} from '../services/authentication.service';
+import { AuthenticationService } from '../auth/authentication.service';
+import { TokenStorageService } from '../auth/token-storage.service';
+import { AuthLoginInfo } from '../auth/login-info';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,18 +14,18 @@ import {AuthenticationService} from '../services/authentication.service';
 export class LoginComponent implements OnInit {
   @ViewChild('fform') LoginFormDirective: { resetForm: () => void; };
   LoginForm:FormGroup;
-  loading = false;
-    submitted = false;
-    returnUrl: string;
-    error = '';
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+  private loginInfo: AuthLoginInfo;
   formErrors = {
-    'email': '',
+    'username': '',
     'password':''
   };
   validationMessages={
-    'email': {
-      'required':      'Email is required.',
-      'email':         'Email not in valid format.'
+    'username': {
+      'required':      'Email is required.'
     },
     'password':{
       'required':       'Password is required',
@@ -35,16 +35,13 @@ export class LoginComponent implements OnInit {
   };
   constructor(private fb: FormBuilder,private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService,
-    private alertService: AlertService,@Inject('BASE_URL') private baseURL:"http://localhost:3000/") { 
+    private authService: AuthenticationService,
+   @Inject('BASE_URL') private baseURL:"http://localhost:3000/", private tokenStorage: TokenStorageService) { 
     this.createForm();
-    if (this.authenticationService.currentUserValue) { 
-      this.router.navigate(['/']);
-  }
   }
   createForm(){
     this.LoginForm=this.fb.group({
-      email: ['', [Validators.required, Validators.email] ],
+      username: ['', [Validators.required] ],
       password:['',[Validators.required, Validators.minLength(8),Validators.pattern]],
     });
     this.LoginForm.valueChanges
@@ -71,26 +68,29 @@ export class LoginComponent implements OnInit {
       }
     }
   }
-  get f() { return this.LoginForm.controls; }
   onSubmit() {
-    this.submitted = true;
+    console.log(this.LoginForm.value);
 
-        // stop here if form is invalid
-        if (this.LoginForm.invalid) {
-            return;
+    this.loginInfo = new AuthLoginInfo(
+      this.LoginForm.value.username,
+      this.LoginForm.value.password);
+      this.authService.attemptAuth(this.loginInfo).subscribe(
+        data => {
+          this.tokenStorage.saveToken(data.accessToken);
+          this.tokenStorage.saveUsername(data.username);
+          this.tokenStorage.saveAuthorities(data.authorities);
+  
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.roles = this.tokenStorage.getAuthorities();
+          this.reloadPage();
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isLoginFailed = true;
         }
-
-        this.loading = true;
-        this.authenticationService.login(this.LoginForm.value.email, this.LoginForm.value.password)
-            .pipe(first())
-            .subscribe(
-                data => {
-                    this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                  this.error = error;
-                    this.loading = false;
-                });
+      );
     this.LoginForm.reset({
       email: '',
       password:'',
@@ -99,6 +99,12 @@ export class LoginComponent implements OnInit {
   }
  
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    if (this.tokenStorage.getToken()) {
+      this.isLoggedIn = true;
+      this.roles = this.tokenStorage.getAuthorities();
+    }
+  }
+  reloadPage() {
+    window.location.reload();
   }
 }
