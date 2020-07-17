@@ -1,0 +1,71 @@
+img{
+  width:200px;
+  height:400px;
+}
+.item{
+  padding-left: 250px;
+  padding-right: 250px;
+  position: relative;
+}
+.custom_overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	background-color: rgba(255, 255, 255, .6);
+	opacity: 0;
+	-webkit-transition: all 400ms ease-in-out;
+	-moz-transition: all 400ms ease-in-out;
+	-o-transition: all 400ms ease-in-out;
+	transition: all 400ms ease-in-out;
+}
+
+.custom_overlay:hover {
+	opacity: 1;
+}
+
+.custom_overlay_inner {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	right: 10px;
+    transform: translateY(-50%);
+    padding-bottom: 20px;
+}
+
+.custom_overlay h4 {
+	position: relative;
+  margin-bottom: 20px;
+}
+
+.custom_overlay p { 
+  color: #000;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.custom_overlay h4:after {
+
+	position: absolute;
+	left: 35%;
+	right: 35%;
+	bottom: 0;
+	height: 4px;
+}
+
+/*------------------- TABLET ------------------*/
+@media only screen and ( min-width: 600px ) and ( max-width: 999px ) {
+	.custom_overlay h4 { font-size: 80%;}
+	.custom_overlay p { 
+		font-size: 85%;
+		line-height: 1.2em;
+	}
+}
+
+/*------------------- MOBILE ------------------*/
+@media only screen and ( max-width: 599px ) {
+	.custom_overlay h4 { font-size: 100%;}
+	.custom_overlay p { font-size: 100%;}
+}

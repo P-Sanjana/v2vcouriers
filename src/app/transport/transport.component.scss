@@ -1,0 +1,59 @@
+$lt-gray: #ddd;
+$background-dark: #1d3557 ;
+$background-light: #457b9d  ;
+$background-pale: #a8dadc ;
+$background-moredark: #355070  ;
+mat-sidenav {
+    width: auto;
+    padding:15px;
+}
+.mat-drawer { 
+    background-color: #1d3557;
+    color:#fff
+}
+.main-content {
+    padding:20px;
+}
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+.vertical-menu {
+    width: 180px; /* Set a width if you like */
+  }
+  
+  .vertical-menu a {
+    /* Grey background color */
+    /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+  }
+  .serif {
+    font-size:16px;
+    color:floralwhite;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  a.serif:link
+  {
+     background-color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:visited
+  {
+     color: $background-dark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:hover
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
+  }
+  a.serif:active
+  {
+     color: $background-moredark;
+     text-decoration: none;
+     color:floralwhite;
+  }

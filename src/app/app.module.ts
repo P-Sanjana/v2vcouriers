@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import {AuthenticationService } from './auth/authentication.service';
 import {TokenStorageService} from './auth/token-storage.service';
 import { UserService } from './services/user.service';
 import {MatIconModule} from '@angular/material/icon';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,7 +25,9 @@ import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
+import {AuthGuard} from './auth/auth.guard';
 import { LoginComponent } from './login/login.component';
+import { OwlModule } from 'ngx-owl-carousel';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
@@ -43,7 +45,6 @@ import { TrackComponent } from './track/track.component';
 import 'hammerjs';
 import { RegisterComponent } from './register/register.component';
 import { StartComponent } from './start/start.component';
-import { AlertComponent } from './_directives/alert/alert.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material';
 import { AdminprofileComponent } from './adminprofile/adminprofile.component';
@@ -52,6 +53,8 @@ import { CourierdeliverComponent } from './courierdeliver/courierdeliver.compone
 import { CourierreceiveComponent } from './courierreceive/courierreceive.component';
 import { DashboardcboyComponent } from './dashboardcboy/dashboardcboy.component';
 import { CourierboydeliveryComponent } from './courierboydelivery/courierboydelivery.component';
+import { SliderComponent } from './slider/slider.component';
+import { TransportComponent } from './transport/transport.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,6 @@ import { CourierboydeliveryComponent } from './courierboydelivery/courierboydeli
     TrackComponent,
     RegisterComponent,
     StartComponent,
-    AlertComponent,
     DashboardComponent,
     AdminprofileComponent,
     CourieracceptComponent,
@@ -74,9 +76,12 @@ import { CourierboydeliveryComponent } from './courierboydelivery/courierboydeli
     CourierreceiveComponent,
     DashboardcboyComponent,
     CourierboydeliveryComponent,
+    SliderComponent,
+    TransportComponent,
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     FlexLayoutModule,
@@ -98,14 +103,16 @@ import { CourierboydeliveryComponent } from './courierboydelivery/courierboydeli
     MatCardModule,
     HttpClientModule,
     MatGridListModule,
-    MatSidenavModule
+    MatSidenavModule,
+    OwlModule
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   entryComponents: [
     LoginComponent
 ],
   providers: [CouriertypeService,CourierserviceService,{provide: 'BASE_URL', useValue: 'http://localhost:3000/'},
   UserserviceService,CourierdataService,httpInterceptorProviders,AuthenticationService,TokenStorageService,
-  UserService],
+  UserService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

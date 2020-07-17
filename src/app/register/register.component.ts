@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
   isSignedUp = false;
   isSignUpFailed = false;
   errorMessage = '';
-
+submitted=false;
   formErrors = {
     'name': '',
     'username': '',
@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.RegisterForm.value);
-
+this.submitted=true;
     this.signupInfo = new SignUpInfo(
       this.RegisterForm.value.name,
       this.RegisterForm.value.username,

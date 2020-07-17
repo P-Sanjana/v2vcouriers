@@ -13,7 +13,7 @@ body{
   }
   
   .circles{
-      padding-bottom: 10px;
+    padding-bottom: 10px;
     height: 0.938em;
     width: 0.938em;
     border: 0.188em solid #000;
@@ -24,11 +24,11 @@ body{
   .active{
       background-color:#ffa500;
   }
-  
+
   .circle-desc-active{
   font-weight: bold;
   }
-  .done{
+  .complete{
     background-color:green;
   }
   .bar{
@@ -44,16 +44,16 @@ body{
   }
   
   .container{
-    min-width:320px;
+    min-width:450px;
     margin: "0px auto";
-    text-align: center;
+  
     padding-left: 10px;
   }
   
   .circle-desc{
-    padding-right:20px;
-   padding-left:10px;
-   margin-left:0.500em;
+    padding-right:10px;
+   padding-left:0px;
+   margin-left:0.400em;
   }
   
   @media only screen and (max-width: 320px){

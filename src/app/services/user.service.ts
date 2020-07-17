@@ -5,10 +5,28 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private userUrl = 'http://localhost:8080/api/test/user';
-  private cboyUrl = 'http://localhost:8080/api/test/pm';
-  private adminUrl = 'http://localhost:8080/api/test/admin';
+  sharedData:string[];
+  private userUrl = 'https://localhost:8443/api/test/user';
+  private cboyUrl = 'https://localhost:8443/api/test/courierboy';
+  private adminUrl = 'https://localhost:8443/api/test/admin';
   constructor(private http: HttpClient) { }
+  setSharedData(authorities:string[]){
+    this.sharedData=authorities;
+    console.log(this.sharedData);
+  }
+  getSharedData():string[]{
+    return this.sharedData;
+  }
+  getUserBoard(): Observable<string> {
+    return this.http.get(this.userUrl, { responseType: 'text' });
+  }
 
+  getCBoyBoard(): Observable<string> {
+    return this.http.get(this.cboyUrl, { responseType: 'text' });
+  }
+
+  getAdminBoard(): Observable<string> {
+    return this.http.get(this.adminUrl, { responseType: 'text' });
+  }
 
 }

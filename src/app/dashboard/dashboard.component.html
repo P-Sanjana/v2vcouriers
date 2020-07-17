@@ -1,11 +1,11 @@
 <body>
 <mat-sidenav-container fullscreen>
   <mat-sidenav class="vertical-menu" mode="side" #sidenav opened position="start">
-    <a mat-button class="serif"  routerLink="/dashboard" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b> Dashboard</b></a>
-    <a mat-button class="serif"  routerLink="/adminprofile" routerLinkActive="active"><i class="fa fa-user icon-5x"></i><b> Profile</b></a>
-    <a mat-button class="serif"  routerLink="/courieraccept" routerLinkActive="active" ><i class="fa fa-envelope icon-5x"></i><b> New Couriers</b></a>
-    <a mat-button class="serif" routerLink="/courierdeliver" routerLinkActive="active"><i class="fa fa-envelope-o icon-5x"></i><b>Courier Delivery</b></a>
-    <a mat-button (click)="logout()"><i class="fa fa-unlock-alt icon-5x"></i><b> Logout</b></a>
+    <a mat-button class="serif"  routerLink="/dashboard" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
+    <a mat-button class="serif"  routerLink="/courieraccept" routerLinkActive="active" ><i class="fa fa-envelope fa-lg"></i><b> New Couriers</b></a>
+    <a mat-button class="serif" routerLink="/courierdeliver" routerLinkActive="active"><i class="fa fa-envelope-open fa-lg"></i><b> Courier Delivery</b></a>
+    <a mat-button class="serif" routerLink="/transport" routerLinkActive="active"><mat-icon> local_shipping</mat-icon><b> Transport</b></a>
+    <a mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon><b> Logout</b></a>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar style="background-color: #1d3557;color:floralwhite">
@@ -40,7 +40,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Unique Visitor</h3>
+                <h3 class="box-title">Couriers Delivered</h3>
                 <ul class="list-inline two-part">
                     <li>
                         <div id="sparklinedash3"></div>
@@ -54,7 +54,7 @@
     <div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
           <div class="white-box">
-              <h3 class="box-title">Products Yearly Sales</h3>
+              <h3 class="box-title">Courier Monthly Profits</h3>
               <ul class="list-inline text-right">
                   <li>
                       <h5><i class="fa fa-circle m-r-5 text-info"></i>Profit</h5> </li>
@@ -62,6 +62,9 @@
           </div>
       </div>
   </div>
+  <div style="display: block" class="chart">
+    <canvas #lineChart>{{ chart }}</canvas>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
 </body>

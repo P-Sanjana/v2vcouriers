@@ -1,13 +1,8 @@
-import { Component, OnInit ,Inject} from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { LoginComponent } from '../login/login.component';
-import { map } from 'rxjs/operators';
+import { Component, OnInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { couriers } from '../shared/couriers';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../auth/token-storage.service';
-import { Role } from '../_models/role';
-import { User } from '../_models/user';
+import {UserService} from '../services/user.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -17,28 +12,29 @@ export class HeaderComponent implements OnInit {
   image:string;
   private roles: string[];
   private authority: string;
-  constructor( private router: Router, @Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,
+  constructor( private router: Router,private http: HttpClient,private userdata:UserService,
   private tokenStorage: TokenStorageService) {
      
      }
 
   ngOnInit(){
     tokenStotage: this.tokenStorage.getToken();
-    this.image=this.baseURL+"images/courier3.jpg";
     if (this.tokenStorage.getToken()) {
+      console.log(this.userdata.getSharedData());
       this.roles = this.tokenStorage.getAuthorities();
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
           return false;
-        } else if (role === 'ROLE_PM') {
-          this.authority = 'pm';
+        } else if (role === 'ROLE_COURIERBOY') {
+          this.authority = 'cboy';
           return false;
         }
-        this.authority = 'ROLE_USER';
+        this.authority = 'user';
         return true;
       });
     }
+    this.image='/assets/images/courier3.jpg';
   }
  
   logout() {

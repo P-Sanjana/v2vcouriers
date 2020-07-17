@@ -8,34 +8,35 @@
             <form novalidate *ngIf="!submitted" [formGroup]="idForm" #fform="ngForm" >
                 <p>
                     <mat-form-field appearance="none">
-                        <input matInput formControlName="consignment" placeholder="Consignment Number"  type="text" pattern="[0-9]*" required>
-                        <mat-error *ngIf="formErrors.consignment">{{formErrors.consignment}}</mat-error>
+                        <input matInput formControlName="id" placeholder="Consignment Number"  type="text"  required>
+                        <mat-error *ngIf="formErrors.id">{{formErrors.id}}</mat-error>
                       </mat-form-field>
                 </p>
                 <button type="button" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid" (click)='getdata()'>Track</button>
 </form> 
 <div *ngIf="submitted">
-    <h2>Consignment Number : {{courier.id|json}}</h2>
+<h4>Consignment Number : {{courier.id}}</h4>
 <h3>Senders's Information</h3>
-<p><b>Sender's Name</b> : {{courier.Sendername |json}}</p>
-<p><b>Sender's Mail</b> : {{courier.mail|json}}</p>
-<p><b>Sender's Phone Number</b> : {{courier.phNumber|json}}</p>
-<p><b>Sender's Address</b> : {{courier.Senderaddress|json}} , {{courier.Sendercity|json}} , {{courier.Senderstate|json}}</p>
+<p><b>Sender's Name</b> : {{courier.sendername}}</p>
+<p><b>Sender's Mail</b> : {{courier.email}}</p>
+<p><b>Sender's Phone Number</b> : {{courier.phnumber}}</p>
+<p><b>Sender's Address</b> : {{courier.senderaddress}} , {{courier.sendercity}} , {{courier.senderstate}}</p>
 <h3>Recipient Information</h3>
-<p><b>Recipient Name</b> : {{courier.repname|json}}</p>
-<p><b>Recipient Phone Number</b> : {{courier.repphNumber|json}}</p>
-<p><b>Recipient Address</b> : {{courier.repaddress|json}} , {{courier.repcity|json}} , {{courier.state|json}}</p>
+<p><b>Recipient Name</b> : {{courier.repname}}</p>
+<p><b>Recipient Phone Number</b> : {{courier.repphnumber}}</p>
+<p><b>Recipient Address</b> : {{courier.repaddress}} , {{courier.repcity}} , {{courier.state}}</p>
 <br>
-<p><b>Courier Service</b> : {{courier.courierservice|json}}</p>
+<p><b>Courier Service</b> : {{courier.courierservice}}</p>
     <div class="container">
         
         <span *ngFor="let item of tracks;let i=index">
-            <span  class="circle-desc" [class.circle-desc-active]="courier.status==item">{{item}}</span>
+            <span  class="circle-desc" [class.circle-desc-active]="courier.status==item" >{{item}}</span>
         </span>
     </div>
         <div>
-            <span *ngFor="let item of tracks;let i=index">
-                <span class="circles"  [class.active]="courier.status==item"></span>
+            {{currstatus}}
+            <span *ngFor="let item of tracks;let i=index;let num of tracknum">
+                <span class="circles" [class.complete]="currstatus>num" [class.active]="courier.status==item"></span>
                 <span class="bar" *ngIf="(i!=tracks.length-1)"></span>
             </span>
         </div>

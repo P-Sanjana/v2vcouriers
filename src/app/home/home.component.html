@@ -1,8 +1,15 @@
 <!doctype html>
 <html>
 <head>
-
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" src="http://yourjavascript.com/21051171187/jquery-touchswipe-min.js"></script>
+<script type="text/javascript" src="http://yourjavascript.com/11873115711/jquery-1-12-4-min.js"></script>
+<script type="text/javascript" src="http://yourjavascript.com/71712155041/responsive-bootstrap-carousel.js"></script>
 <body class="back">
 <div 
 fxLayout="row"
@@ -11,7 +18,7 @@ fxLayout.xs="column"
 fxLayoutAlign.gt-md="space-around center"
 fxLayoutGap="10px" >
 <!--<img src="\assets\images/bgimg.jpg">-->
-<p style="font-size: 1.5rem;padding-top: 50px;padding-bottom: 50px;"><b>
+<p style="font-size: 1.9rem;padding-top: 50px;padding-bottom: 50px;padding-left: 200px;padding-right: 150px;font-family:cursive"><b>
 We have already registered our presence with our exclusive and largest network in the courier 
 and express industry in India.We have created bonds among all around us and with the company 
 by valuing the one-to-one relationship. We aim at doing things differently to create a 
@@ -20,17 +27,69 @@ revolution in the customer service to keep all of us smiling with satisfaction.
 </b></p>
 <br>
 </div>
-<div ><p style="font-size: 1.5rem;padding-top: 50px;padding-bottom: 50px;">
-The new look of Professional logo envisages the vision of the management - A vision of expanding its reach, 
-delivering service that is value for money and propelling Professional to leadership and entrenching itself 
-there for many successful years. The newly incorporated motif of two kites in tandem is symbolic of its 
-vision to soar high reaching new horizons and exploring new frontiers. The Yellow kite represents sunshine,
-optimism and the Orange kite represents energy and dedication.
+<app-slider></app-slider>
 
-
-
-</p>
-</div>
-
+<h1 style="padding-top: 50px;padding-bottom: 50px;padding-left: 400px;padding-right: 350px;font-family: 'Times New Roman', Times, serif;text-align: center;">Fast and reliable delivery services that meet your timeline</h1>
+<mat-grid-list cols="3" rowHeight="2:2">
+<mat-grid-tile>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Create a Shipment</mat-card-title>
+    <mat-card-subtitle>make a courier sitting at home</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="data:image/png;base64,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" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      <button *ngIf="!clicked" mat-raised-button color="primary" (click)="onClicked()">More</button>
+    </p>
+    <p *ngIf="clicked">
+      fjkfjkwe
+    </p>
+  </mat-card-content>
+  
+</mat-card>
+</mat-grid-tile>
+<mat-grid-tile>
+  <mat-card class="example-card">
+    <mat-card-header>
+      
+      <mat-card-title>Create a Shipment</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="https://i2.wp.com/www.ecommerce-nation.com/wp-content/uploads/2019/02/Ecommerce-shipping-5-secrets-to-designing-a-great-strategy.png?fit=1000%2C600&ssl=1" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+        <button *ngIf="!clicked1" mat-raised-button color="primary" (click)="onClicked1()">More</button>
+      </p>
+      <p *ngIf="clicked1">
+        fjkfjkwe
+      </p>
+    </mat-card-content>
+    
+  </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-card class="example-card">
+      <mat-card-header>
+       
+        <mat-card-title>Create a Shipment</mat-card-title>
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX35588000.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+          <button *ngIf="!clicked1" mat-raised-button color="primary" (click)="onClicked1()">More</button>
+        </p>
+        <p *ngIf="clicked1">
+          fjkfjkwe
+        </p>
+      </mat-card-content>
+      
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
 </body>
 </html>

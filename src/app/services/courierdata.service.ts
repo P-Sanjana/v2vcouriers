@@ -1,49 +1,83 @@
 import { Injectable, Inject } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {Observable, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { d } from '@angular/core/src/render3';
 import {Courier} from '../shared/courier';
 import { couriers } from '../shared/couriers';
+import 'rxjs/add/operator/toPromise';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Headers, Http } from '@angular/http';
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 @Injectable({
   providedIn: 'root'
 })
+
 export class CourierdataService {
-  constructor(private http: HttpClient ,@Inject('BASE_URL') private baseURL:"http://localhost:3000/") { }
-  gettrackvalues():Observable<Object[]>{
-    return this.http.get<Object[]>(this.baseURL+'trackvalues').pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  constructor(@Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient) { }
+  private couriersUrl = 'https://localhost:8443/v2vcouriers/newcourier'; 
+  private getmailurl='https://localhost:8443/v2vcouriers/courierbyemail?email=';
+  private getidurl='https://localhost:8443/v2vcouriers/courierbyid/';
+  private getyettoaccept='https://localhost:8443/v2vcouriers/couriersbyytastatus';
+  private updateyta='https://localhost:8443/v2vcouriers/updateytastatus/';
+  private getyettoreceive='https://localhost:8443/v2vcouriers/couriersbyytrstatus';
+  private updateytr="https://localhost:8443/v2vcouriers/updateytrstatus/";
+  private getinprogress='https://localhost:8443/v2vcouriers/couriersbyinstatus';
+  private updateinp='https://localhost:8443/v2vcouriers/updateinstatus/';
+  private getreadytd='https://localhost:8443/v2vcouriers/couriersbyrtdstatus';
+  private updatertd='https://localhost:8443/v2vcouriers/updatertdstatus/';
+  private getall='https://localhost:8443/v2vcouriers/couriers';
+  private getvehiclesender='https://localhost:8443/v2vcouriers/sendervehicleidbycourierid/';
+  private getvehiclerep="https://localhost:8443/v2vcouriers/repvehicleidbycourierid/";
+  getAllCouriers():Observable<any>{
+    return this.http.get<any>(this.getall);
   }
-  gettracks():Observable<string[]>{
-    return this.http.get<string[]>(this.baseURL+'tracks').pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  getcourierbyid(id:number){
+   return this.http.get(this.getidurl+id);
   }
-  getcourierbyid(id:number):Observable<Courier>{
-    return this.http.get<Courier>(this.baseURL+'couriers/'+id).pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  getcourierbymail(mail:string){
+    return this.http.get(this.getmailurl+mail);
+  
   }
-  getcourierbymail(mail:string):Observable<Courier>{
-    return this.http.get<Courier>(this.baseURL+'couriers?mail='+mail).pipe(map(couriers=>couriers[0])).pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  create(courier: Courier): Observable<Object> {
+
+    return this.http.post(this.couriersUrl,courier,httpOptions);
   }
-  deletecourierbyid(id:number){
-    return this.http.delete(this.baseURL+'couriers/'+id).pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  private handleError(error: any): Promise<any> {
+    console.error('Error', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
-  getAllCouriers():Observable<Courier[]>{
-    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to accept').pipe(
-      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  getCouriersAccept(){
+    
+    return this.http.get(this.getyettoaccept);
   }
-  getCouriersStatus():Observable<Courier[]>{
-    return this.http.get<Courier[]>(this.baseURL+'couriers?status=In Progress').pipe(
-      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
+  changeStatusyta(id:number){
+    return this.http.get(this.updateyta+id);
   }
-  getCourierreceive():Observable<Courier[]>{
-    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Yet to receive').pipe(
-      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
+  getCouriersReceive(){
+    return this.http.get(this.getyettoreceive);
   }
-  getCourierdelivery():Observable<Courier[]>{
-    return this.http.get<Courier[]>(this.baseURL+'couriers?status=Ready to Deliver').pipe(
-      catchError((r:HttpErrorResponse)=>throwError(r.error || 'Server error')));
+  changeStatusytr(id:number){
+    return this.http.get(this.updateytr+id);
+  }
+  getCourierrdelivery(){
+    return this.http.get(this.getinprogress);
+  }
+  changeStatusinp(id:number){
+    return this.http.get(this.updateinp+id);
+  }
+  getCourierscboyDelivery(){
+    return this.http.get(this.getreadytd);
+  }
+  changeStatusrtd(id:number){
+    return this.http.get(this.updatertd+id);
+  }
+  getVehicleSender(id:number){
+    return this.http.get(this.getvehiclesender+id);
+  }
+  getVehicleRep(id:number){
+    return this.http.get(this.getvehiclerep+id);
   }
 }

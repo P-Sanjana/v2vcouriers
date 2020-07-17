@@ -1,10 +1,10 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav class="vertical-menu" mode="side" #sidenav opened position="start">
-    <a mat-button class="serif"  routerLink="/dashboard" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b> Dashboard</b></a>
-    <a mat-button class="serif"  routerLink="/adminprofile" routerLinkActive="active"><i class="fa fa-user icon-5x"></i><b> Profile</b></a>
-    <a mat-button class="serif"  routerLink="/courieraccept" routerLinkActive="active" ><i class="fa fa-envelope icon-5x"></i><b> New Couriers</b></a>
-    <a mat-button class="serif" routerLink="/courierdeliver" routerLinkActive="active"><i class="fa fa-envelope icon-5x"></i><b>Courier Delivery</b></a>
-    <a mat-button (click)="logout()"><i class="fa fa-unlock-alt icon-5x"></i><b> Logout</b></a>
+    <a mat-button class="serif"  routerLink="/dashboard" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
+    <a mat-button class="serif"  routerLink="/courieraccept" routerLinkActive="active" ><i class="fa fa-envelope fa-lg"></i><b> New Couriers</b></a>
+    <a mat-button class="serif" routerLink="/courierdeliver" routerLinkActive="active"><i class="fa fa-envelope-open icon-5x"></i><b> Courier Delivery</b></a>
+    <a mat-button class="serif" routerLink="/transport" routerLinkActive="active"><mat-icon> local_shipping</mat-icon><b> Transport</b></a>
+    <a mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon><b> Logout</b></a>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar style="background-color: #1d3557;color:floralwhite">
@@ -13,34 +13,50 @@
       </button>
      V2V Couriers
     </mat-toolbar>
-    <pre>
-      Consignment No                              Sender Info                                 Receiver Info                                   Status                Accept
-    </pre>
-    <table>
-      <p *ngFor="let courier of couriers">
-        <tr>
-        <td>{{courier.id|json}}</td>
-        <td>{{courier.Sendername|json}} 
-          {{courier.mail|json}} 
-        {{courier.phNumber|json}}
-      {{courier.Senderaddress|json}}
-    {{courier.Sendercity|json}}
-    {{courier.Senderstate|json}}</td>
-    <td>
-      {{courier.repname|json}}
-      {{courier.repphNumber|json}}
-      {{courier.repaddress|json}}
-      {{courier.repcity|json}}
-      {{courier.repstate|json}}
-    </td>
-    <td>
-      {{courier.status|json}}
-    </td>
-    <td>
-      <button type="button" mat-raised-button class=" text-floral-white" style="background-color:green"  (click)='accepted(courier)'>Accept</button>
-    </td>
-        </tr>
-      </p>
-    </table>                                                                                                                                                              
+    <div class="row row-content">
+      <div class="col-12 col-sm-9">
+          <div class="table-responsive">
+              <table class="table table-striped">
+                  <thead class="thead-dark">
+                      <tr>
+                          <th>Consignment Number</th>
+                          <th>Sender</th>
+                          <th>Recipient</th>
+                          <th>Status</th>
+                          <th>Accept</th>
+                      </tr>
+                  </thead>
+                  <tbody *ngFor="let courier of couriers; index as i">
+                      <tr >
+                          <td>{{courier.id}}</td>
+                          <td>{{courier.sendername}} 
+                            {{courier.email}} 
+                          {{courier.phnumber}}
+                        {{courier.senderaddress}}
+                      {{courier.sendercity}}
+                      {{courier.senderstate}}</td>
+                          <td>{{courier.repname}}
+                            {{courier.repphnumber}}
+                            {{courier.repaddress}}
+                            {{courier.repcity}}
+                            {{courier.repstate}}</td>
+                          <td><span *ngIf="!clicked">{{courier.status}}</span>
+                            <span *ngIf="clicked && index>i">{{courierupdate.status}}</span>
+                            <span *ngIf="clicked && index==i">{{courierupdate.status}}</span>
+                           <span *ngIf="clicked && i>index">{{courier.status}}</span>
+                          </td>
+                          <td>
+                            <span *ngIf="!clicked"><button type="button" mat-raised-button class=" text-floral-white" style="background-color:green"  (click)='accepted(courier.id,i)'>Accept</button></span>
+                            <span *ngIf="clicked && index==i"></span>
+                            <span *ngIf="clicked && i<index"></span>
+                            <span *ngIf="clicked && i>index"><button type="button" mat-raised-button class=" text-floral-white" style="background-color:green"  (click)='accepted(courier.id,i)'>Accept</button></span>
+                          </td>
+                        
+                        </tr>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+      </div>                                                                                                                                                         
   </mat-sidenav-content>
 </mat-sidenav-container>

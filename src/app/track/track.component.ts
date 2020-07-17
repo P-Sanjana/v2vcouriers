@@ -1,4 +1,4 @@
-import { Component, OnInit ,Input,Inject,ViewChild} from '@angular/core';
+import { Component, OnInit ,Input,ViewChild} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {CourierdataService} from '../services/courierdata.service';
@@ -19,42 +19,37 @@ export class TrackComponent implements OnInit {
   image:string;
   idForm:FormGroup;
   submitted=false;
-  courier:Courier;
+  courier:any=null;
   trackvalues: Object[];
   status:string;
-  tracks: string[];
-  done="done";
-  constructor(@Inject('BASE_URL') private baseURL:"http://localhost:3000/",private http: HttpClient,private fb: FormBuilder,
+  currstatus:number;
+  tracks: string[]=["Yet_to_accept","Yet_to_receive","In_progress","Ready_to_deliver","Delivered"];
+  tracknum:number[]=[1,2,3,4,5];
+  constructor(private http: HttpClient,private fb: FormBuilder,
   private courierdata:CourierdataService,private userService: UserService) {
     this.createForm();
-    this.courier=new Courier();
    }
   ngOnInit() {
-    this.image=this.baseURL+"images/tracker.jpg";
-    this.courierdata.gettracks().subscribe(tracks=>this.tracks=tracks);
-    this.courierdata.gettrackvalues().subscribe(trackvalues=>this.trackvalues=trackvalues);
+    this.image='/assets/images/tracker.jpg';
   }
   formErrors={
-    'consignment':'',
+    'id':'',
   };
   ValidationMessages={
-    'consignment':{
-      'required':'Consignment Number is required.',
-      'pattern':'Enter a valid Consignment Number.'
+    'id':{
+      'required':'Email is required.',
+      
     }
   };
   createForm(){
     this.idForm=this.fb.group({
-      consignment:['',[Validators.required,Validators.pattern]], 
+      id:['',[Validators.required]], 
     });
     this.idForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
       this.onValueChanged();
   }
 
-private loadAllUsers() {
-   
-}
   onValueChanged(data?: any) {
     if (!this.idForm) { return; }
     const form = this.idForm;
@@ -76,6 +71,17 @@ private loadAllUsers() {
   }
   getdata(){
     this.submitted=true;
-    this.courierdata.getcourierbyid(this.idForm.value.consignment).subscribe(courier=>this.courier=courier);
+   this.courierdata.getcourierbyid(this.idForm.value.id).subscribe(courier=>this.courier=courier,error => console.log(error));
+    /*if(this.courier.status=="Yet_to_accept")
+    this.currstatus=1;
+    else if(this.courier.status=="Yet_to_receive")
+    this.currstatus=2;
+    else if(this.courier.status=="In_progress")
+    this.currstatus=3;
+    else if(this.courier.status=="Ready_to_deliver")
+    this.currstatus=4;
+    else
+    this.currstatus=5;*/
+    console.log(this.courier);
   }
 }

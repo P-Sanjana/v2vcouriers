@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import * as CryptoJS from 'crypto-js';
 const TOKEN_KEY = 'AuthToken';
 const USERNAME_KEY = 'AuthUsername';
 const AUTHORITIES_KEY = 'AuthAuthorities';
@@ -15,16 +16,18 @@ export class TokenStorageService {
 
   public saveToken(token: string) {
     window.sessionStorage.removeItem(TOKEN_KEY);
-    window.sessionStorage.setItem(TOKEN_KEY, token);
+    window.sessionStorage.setItem(TOKEN_KEY, CryptoJS.HmacSHA256(token,"secretkey").toString(CryptoJS.enc.Hex));
   }
 
   public getToken(): string {
     return sessionStorage.getItem(TOKEN_KEY);
   }
-
+  isLoggedIn() {
+    return this.getToken() !== null;
+  }
   public saveUsername(username: string) {
     window.sessionStorage.removeItem(USERNAME_KEY);
-    window.sessionStorage.setItem(USERNAME_KEY, username);
+    window.sessionStorage.setItem(USERNAME_KEY, CryptoJS.HmacSHA256(username,"secretkey").toString(CryptoJS.enc.Hex));
   }
 
   public getUsername(): string {
@@ -33,6 +36,7 @@ export class TokenStorageService {
 
   public saveAuthorities(authorities: string[]) {
     window.sessionStorage.removeItem(AUTHORITIES_KEY);
+    console.log(JSON.stringify(authorities));
     window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
   }
 

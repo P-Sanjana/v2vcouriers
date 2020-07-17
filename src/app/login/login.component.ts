@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { AuthenticationService } from '../auth/authentication.service';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { AuthLoginInfo } from '../auth/login-info';
+import {UserService} from '../services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  authorities:string[];
   private loginInfo: AuthLoginInfo;
   formErrors = {
     'username': '',
@@ -34,7 +36,7 @@ export class LoginComponent implements OnInit {
     }
   };
   constructor(private fb: FormBuilder,private route: ActivatedRoute,
-    private router: Router,
+    private router: Router,private userdata:UserService,
     private authService: AuthenticationService,
    @Inject('BASE_URL') private baseURL:"http://localhost:3000/", private tokenStorage: TokenStorageService) { 
     this.createForm();
@@ -79,9 +81,10 @@ export class LoginComponent implements OnInit {
           this.tokenStorage.saveToken(data.accessToken);
           this.tokenStorage.saveUsername(data.username);
           this.tokenStorage.saveAuthorities(data.authorities);
-  
           this.isLoginFailed = false;
           this.isLoggedIn = true;
+          
+          this.authorities=data.authorities;
           this.roles = this.tokenStorage.getAuthorities();
           this.reloadPage();
         },

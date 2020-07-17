@@ -34,17 +34,17 @@ export class CourierserviceService {
     else{
       p+=1000;
     }
-      this.courier.id=Math.floor(Math.random() * (100 - 1 + 1));
-      this.courier.Sendername=pickupForm.value.Sendername;
-      this.courier.mail=pickupForm.value.mail;
-      this.courier.phNumber=pickupForm.value.phNumber;
-      this.courier.Senderaddress=pickupForm.value.Senderaddress;
-      this.courier.Sendercity=pickupForm.value.Sendercity;
-      this.courier.Senderstate=pickupForm.value.Senderstate;
+   
+      this.courier.sendername=pickupForm.value.sendername;
+      this.courier.email=pickupForm.value.email;
+      this.courier.phnumber=pickupForm.value.phnumber;
+      this.courier.senderaddress=pickupForm.value.senderaddress;
+      this.courier.sendercity=pickupForm.value.sendercity;
+      this.courier.senderstate=pickupForm.value.senderstate;
       this.courier.agree=pickupForm.value.agree;
       this.courier.contacttype=pickupForm.value.contacttype;
       this.courier.repname=pickupForm.value.repname;
-      this.courier.repphNumber=pickupForm.value.repphNumber;
+      this.courier.repphnumber=pickupForm.value.repphnumber;
       this.courier.repaddress=pickupForm.value.repaddress;
       this.courier.repcity=pickupForm.value.repcity;
       this.courier.repstate=pickupForm.value.repstate;
@@ -63,6 +63,6 @@ export class CourierserviceService {
     return this.courier;
   }
   constructor(private http: HttpClient ,@Inject('BASE_URL') private baseURL:"http://localhost:3000/") {
-    this.courier=new Courier();
+   
    }
 }

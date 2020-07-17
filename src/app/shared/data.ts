@@ -1,4 +1,4 @@
-export interface Data {
+export class Data {
     month: String;
     price: Number;
   }

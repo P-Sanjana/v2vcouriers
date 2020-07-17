@@ -1,0 +1,42 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav class="vertical-menu" mode="side" #sidenav opened position="start">
+    <a mat-button class="serif"  routerLink="/dashboard" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
+    <a mat-button class="serif"  routerLink="/courieraccept" routerLinkActive="active" ><i class="fa fa-envelope fa-lg"></i><b> New Couriers</b></a>
+    <a mat-button class="serif" routerLink="/courierdeliver" routerLinkActive="active"><i class="fa fa-envelope-open fa-lg"></i><b> Courier Delivery</b></a>
+    <a mat-button class="serif" routerLink="/transport" routerLinkActive="active"><mat-icon> local_shipping</mat-icon><b> Transport</b></a>
+    <a mat-button (click)="logout()"><i class="fa fa-sign-out-o fa-lg" aria-hidden="true"></i><b> Logout</b></a>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color: #1d3557;color:floralwhite">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+     V2V Couriers
+    </mat-toolbar>
+    <div>
+      <div *ngFor="let courier of couriers">
+        <h4>Consignment Number : {{courier.id}}</h4>
+        <h3>Senders's Information</h3>
+        <p>Sender's Name : {{courier.sendername}}</p>
+        <p>Sender's Mail : {{courier.email}}</p>
+        <p>Sender's Phone Number : {{courier.phnumber}}</p>
+        <p>Sender's Address : {{courier.senderaddress}} , {{courier.sendercity}} , {{courier.senderstate}}</p>
+        <h3>Recipient Information</h3>
+        <p>Recipient Name : {{courier.repname}}</p>
+        <p>Recipient Phone Number : {{courier.repphnumber}}</p>
+        <p>Recipient Address : {{courier.repaddress}} , {{courier.repcity}} , {{courier.repstate}}</p>
+        <br>
+        <p>Courier Service : {{courier.courierservice}}</p>
+        <br>
+        <h4>The price to be paid : <b>{{courier.price}}</b></h4>
+        <button *ngIf="courier.status==='Yet_to_receive' || courier.status==='In_progress' || courier.status==='Ready_to_deliver'" type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue" (click)="getInfo(courier)">Transportation Info</button>
+        <p *ngIf="courier.status==='Yet_to_accept'">Need to be Accepted</p> 
+        <p *ngIf="courier.status==='Delivered'">Delivered</p>
+        <div *ngIf="clicked">
+        <h4>Vehicle Id : {{vehicle}}</h4>
+        </div>
+        <hr>  
+      </div>  
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

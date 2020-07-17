@@ -1,10 +1,10 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav class="vertical-menu" mode="side" #sidenav opened position="start">
-    <a mat-button class="serif"  routerLink="/dashboardcboy" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b> Dashboard</b></a>
+    <a mat-button class="serif"  routerLink="/dashboardcboy" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
     
-    <a mat-button class="serif"  routerLink="/courierreceive" routerLinkActive="active" ><i class="fa fa-envelope icon-5x"></i><b> Accept Couriers</b></a>
-    <a mat-button class="serif"  routerLink="/courierboydelivery" routerLinkActive="active" ><i class="fa fa-envelope-o icon-5x"></i><b> Deliver Couriers</b></a>
-    <a mat-button (click)="logout()"><i class="fa fa-unlock-alt icon-5x"></i><b> Logout</b></a>
+    <a mat-button class="serif"  routerLink="/courierreceive" routerLinkActive="active" ><i class="fa fa-envelope fa-lg"></i><b> Receive Couriers</b></a>
+    <a mat-button class="serif"  routerLink="/courierboydelivery" routerLinkActive="active" ><i class="fa fa-envelope-open fa-lg"></i><b> Deliver Couriers</b></a>
+    <a mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon><b> Logout</b></a>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar style="background-color: #1d3557;color:floralwhite">
@@ -17,7 +17,7 @@
       <div class="row">
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Total Visit</h3>
+                <h3 class="box-title"> Couriers Received</h3>
                 <ul class="list-inline two-part">
                     <li>
                         <div id="sparklinedash"></div>
@@ -28,7 +28,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Total Page Views</h3>
+                <h3 class="box-title">Couriers Delivered</h3>
                 <ul class="list-inline two-part">
                     <li>
                         <div id="sparklinedash2"></div>
@@ -39,7 +39,7 @@
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Unique Visitor</h3>
+                <h3 class="box-title">Growth</h3>
                 <ul class="list-inline two-part">
                     <li>
                         <div id="sparklinedash3"></div>

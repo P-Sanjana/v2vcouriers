@@ -1,39 +1,51 @@
-<div *ngIf="!submitted">
+<div *ngIf="!submitted && !info">
 <h4>Fill in the form to post a courier</h4>
 <form  novalidate [formGroup]="pickupForm" #fform="ngForm" (ngSubmit)="onSubmit()">
     <p>
         <mat-form-field class="half-width" appearance="none">
-            <input matInput formControlName="Sendername"  placeholder="Sender's Name"  type="text" required>
-            <mat-error *ngIf="formErrors.Sendername">{{formErrors.Sendername}}</mat-error>
+            <input matInput formControlName="sendername"  placeholder="Sender's Name"  type="text" required>
+            <mat-error *ngIf="formErrors.sendername">{{formErrors.sendername}}</mat-error>
         </mat-form-field>
     </p> 
     <p>
         <mat-form-field class="half-width" appearance="none">
-            <input matInput formControlName="mail" placeholder="Email" type="email"  email required>
-            <mat-error *ngIf="formErrors.mail">{{formErrors.mail}}</mat-error>
+            <input matInput formControlName="email" placeholder="Email" type="email"  email required>
+            <mat-error *ngIf="formErrors.email">{{formErrors.email}}</mat-error>
           </mat-form-field>
           <mat-form-field class="half-width" appearance="none">
-            <input matInput formControlName="phNumber" placeholder="Phone Number"  type="tel" pattern="[0-9]*" required>
-            <mat-error *ngIf="formErrors.phNumber">{{formErrors.phNumber}}</mat-error>
+            <input matInput formControlName="phnumber" placeholder="Phone Number"  type="tel" pattern="[0-9]*" required>
+            <mat-error *ngIf="formErrors.phnumber">{{formErrors.phnumber}}</mat-error>
           </mat-form-field>
     </p>
     <p>
       <mat-form-field class="half-width" appearance="none">
-          <input matInput formControlName="Senderaddress" placeholder="Sender's Address"  type="text" required>
-          <mat-error *ngIf="formErrors.Senderaddress">{{formErrors.Senderaddress}}</mat-error>
+          <input matInput formControlName="senderaddress" placeholder="Sender's Address"  type="text" required>
+          <mat-error *ngIf="formErrors.senderaddress">{{formErrors.senderaddress}}</mat-error>
       </mat-form-field>
   </p>
+  <p>
+    <mat-form-field class="half-width" appearance="none">
+        <input matInput formControlName="sendercountry" placeholder="Sender's Country"  type="text" required>
+        <mat-error *ngIf="formErrors.sendercountry">{{formErrors.sendercountry}}</mat-error>
+    </mat-form-field>
+</p>
+<p>
+  <mat-form-field class="half-width" appearance="none">
+      <input matInput formControlName="senderdistrict" placeholder="Sender's District"  type="text" required>
+      <mat-error *ngIf="formErrors.senderdistrict">{{formErrors.senderdistrict}}</mat-error>
+  </mat-form-field>
+</p>
   <table class="form-size">
     <td>
       <mat-form-field class="half-width" appearance="none">
-        <input matInput formControlName="Sendercity" placeholder="Sender's City"  type="text" required>
-        <mat-error *ngIf="formErrors.Sendercity">{{formErrors.Sendercity}}</mat-error>
+        <input matInput formControlName="sendercity" placeholder="Sender's City"  type="text" required>
+        <mat-error *ngIf="formErrors.sendercity">{{formErrors.sendercity}}</mat-error>
     </mat-form-field>
     </td>
     <td>
       <mat-form-field class="half-width" appearance="none">
-        <input matInput formControlName="Senderstate"  placeholder="Sender's State"  type="text" required>
-        <mat-error *ngIf="formErrors.Senderstate">{{formErrors.Senderstate}}</mat-error>
+        <input matInput formControlName="senderstate"  placeholder="Sender's State"  type="text" required>
+        <mat-error *ngIf="formErrors.senderstate">{{formErrors.senderstate}}</mat-error>
     </mat-form-field>
     </td>
     </table>
@@ -57,8 +69,8 @@
     </p>
     <p>
         <mat-form-field class="half-width" appearance="none">
-            <input matInput formControlName="repphNumber" placeholder=" Recipient Phone Number"  type="tel" pattern="[0-9]*" required>
-            <mat-error *ngIf="formErrors.repphNumber">{{formErrors.repphNumber}}</mat-error>
+            <input matInput formControlName="repphnumber" placeholder=" Recipient Phone Number"  type="tel" pattern="[0-9]*" required>
+            <mat-error *ngIf="formErrors.repphnumber">{{formErrors.repphnumber}}</mat-error>
           </mat-form-field>
     </p>
     <p>
@@ -67,6 +79,18 @@
           <mat-error *ngIf="formErrors.repaddress">{{formErrors.repaddress}}</mat-error>
       </mat-form-field>
   </p>
+  <p>
+    <mat-form-field class="half-width" appearance="none">
+        <input matInput formControlName="repcountry" placeholder="Recipient Country"  type="text" required>
+        <mat-error *ngIf="formErrors.repcountry">{{formErrors.repcountry}}</mat-error>
+    </mat-form-field>
+</p>
+<p>
+  <mat-form-field class="half-width" appearance="none">
+      <input matInput formControlName="repdistrict" placeholder="Recipient District"  type="text" required>
+      <mat-error *ngIf="formErrors.repdistrict">{{formErrors.repdistrict}}</mat-error>
+  </mat-form-field>
+</p>
   <table class="form-size">
     <td>
       <mat-form-field class="half-width" appearance="none">
@@ -87,7 +111,7 @@
       </td>
       <td>
         <mat-select placeholder="Standard" formControlName="courierservice"  >
-          <mat-option *ngFor="let ctype of courierservice|async" [value]="ctype">
+          <mat-option *ngFor="let ctype of courierservice" [value]="ctype">
             {{ ctype  }}
           </mat-option>
         </mat-select>
@@ -112,11 +136,20 @@
             <mat-error *ngIf="formErrors.vol">{{formErrors.vol}}</mat-error>  
           </mat-form-field>
     </p>
+    <button type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue;" (click)="goBack()">Back</button>
     <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
     <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
 </form>
 </div>
-<div *ngIf="submitted"
+<div *ngIf="submitted && !info" class="container"
+fxLayout="column"
+fxLayout.sm="column"
+fxLayout.xs="column"
+fxLayoutAlign.gt-md="space-around center"
+fxLayoutGap="10px">
+<button type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue;padding-top:50px;padding-bottom: 50px;" (click)="getInfo()">Get Info</button>
+</div>
+<div *ngIf="info && !submitted"
   class="container"
 fxLayout="column"
 fxLayout.sm="column"
@@ -124,18 +157,18 @@ fxLayout.xs="column"
 fxLayoutAlign.gt-md="space-around center"
 fxLayoutGap="10px">
 <h1>Your Courier Information</h1>
-<h2>Consignment Number : {{addedcourier.id|json}}</h2>
+<h4>Consignment Number : {{addedcourier.id}}</h4>
 <h3>Senders's Information</h3>
-<p>Sender's Name : {{addedcourier.Sendername |json}}</p>
-<p>Sender's Mail : {{addedcourier.mail|json}}</p>
-<p>Sender's Phone Number : {{addedcourier.phNumber|json}}</p>
-<p>Sender's Address : {{addedcourier.Senderaddress|json}} , {{addedcourier.Sendercity|json}} , {{addedcourier.Senderstate|json}}</p>
+<p>Sender's Name : {{addedcourier.sendername}}</p>
+<p>Sender's Mail : {{addedcourier.email}}</p>
+<p>Sender's Phone Number : {{addedcourier.phnumber}}</p>
+<p>Sender's Address : {{addedcourier.senderaddress}} , {{addedcourier.sendercity}} , {{addedcourier.senderstate}}</p>
 <h3>Recipient Information</h3>
-<p>Recipient Name : {{addedcourier.repname|json}}</p>
-<p>Recipient Phone Number : {{addedcourier.repphNumber|json}}</p>
-<p>Recipient Address : {{addedcourier.repaddress|json}} , {{addedcourier.repcity|json}} , {{addedcourier.state|json}}</p>
+<p>Recipient Name : {{addedcourier.repname}}</p>
+<p>Recipient Phone Number : {{addedcourier.repphnumber}}</p>
+<p>Recipient Address : {{addedcourier.repaddress}} , {{addedcourier.repcity}} , {{addedcourier.repstate}}</p>
 <br>
-<p>Courier Service : {{addedcourier.courierservice|json}}</p>
+<p>Courier Service : {{addedcourier.courierservice}}</p>
 <br>
-<h2>The price to be paid : <b>{{addedcourier.price|json}}</b></h2>
+<h2>The price to be paid : <b>{{addedcourier.price}}</b></h2>
 </div>

@@ -3,6 +3,10 @@ $background-dark: #1d3557 ;
 $background-light: #457b9d  ;
 $background-pale: #a8dadc ;
 $background-moredark: #355070  ;
+@mixin zero-margin($pad-up-dn, $pad-left-right) {
+	margin:0px auto;
+	padding: $pad-up-dn $pad-left-right;
+}
 mat-sidenav {
     width: auto;
     padding:15px;
@@ -14,11 +18,17 @@ mat-sidenav {
 .main-content {
     padding:20px;
 }
+.row-content {
+  @include zero-margin(50px,0px);
+  border-bottom: 1px ridge;
+  min-height:400px;
+  width:100%;
+}
 .toolbar-spacer {
     flex: 1 1 auto;
 }
 .vertical-menu {
-    width: 170px; /* Set a width if you like */
+    width: 185px; /* Set a width if you like */
   }
   
   .vertical-menu a {
