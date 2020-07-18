@@ -20,8 +20,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(){
     tokenStotage: this.tokenStorage.getToken();
     if (this.tokenStorage.getToken()) {
-      console.log(this.userdata.getSharedData());
+      
       this.roles = this.tokenStorage.getAuthorities();
+      console.log(this.roles);
       this.roles.every(role => {
         if (role === 'ROLE_ADMIN') {
           this.authority = 'admin';
