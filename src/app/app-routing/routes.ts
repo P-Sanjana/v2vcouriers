@@ -16,8 +16,8 @@ import { CourierreceiveComponent } from '../courierreceive/courierreceive.compon
 import { DashboardcboyComponent } from '../dashboardcboy/dashboardcboy.component';
 import { CourierboydeliveryComponent } from '../courierboydelivery/courierboydelivery.component';
 import { AuthGuard } from '../auth/auth.guard';
-import {TokenStorageService} from '../auth/token-storage.service';
 import { TransportComponent } from '../transport/transport.component';
+import { UserprofileComponent } from '../userprofile/userprofile.component';
 export const routes: Routes = [
     {path:'auth/login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
@@ -35,6 +35,7 @@ export const routes: Routes = [
     {path:'courierreceive',component:CourierreceiveComponent,canActivate: [AuthGuard]},
     {path:'dashboardcboy',component:DashboardcboyComponent,canActivate: [AuthGuard]},
     {path:'courierboydelivery',component:CourierboydeliveryComponent,canActivate: [AuthGuard]},
-    {path:'transport',component:TransportComponent,canActivate:[AuthGuard]}
+    {path:'transport',component:TransportComponent,canActivate:[AuthGuard]},
+    {path:'userprofile',component:UserprofileComponent,canActivate:[AuthGuard]}
   ];
   

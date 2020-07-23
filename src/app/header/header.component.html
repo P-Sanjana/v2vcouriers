@@ -15,7 +15,7 @@
   <a mat-button   *ngIf="authority === 'admin'" routerLink="/dashboard" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
   <a mat-button  *ngIf="authority === 'cboy'" routerLink="/dashboardcboy" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b>  Dashboard</b></a>
   <a mat-button routerLink="/contactus" class="serif" routerLinkActive="active" ><i class="fa fa-address-card fa-lg" aria-hidden="true"></i><b> Contact</b></a>
-  
+  <a mat-button *ngIf="authority === 'user'" routerLink="/userprofile" class="serif" routerLinkActive="active" ><i class="fa fa-address-card fa-lg" aria-hidden="true"></i><b> Profile</b></a>
   <a mat-button routerLink="/start" class="serif" routerLinkActive="active"><i class="fa fa-user-circle fa-lg"></i><b> Login or SignUp</b></a>
   <a mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon><b> Logout</b></a>
   </div>
@@ -30,6 +30,7 @@
       <a mat-button   *ngIf="authority === 'admin'" routerLink="/dashboard" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b> Dashboard</b></a>
       <a mat-button  *ngIf="authority === 'cboy'" routerLink="/dashboardcboy" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o icon-5x"></i><b> Dashboard</b></a>
       <a mat-button routerLink="/contactus" class="serif" routerLinkActive="active" ><i class="fa fa-address-card icon-5x"></i><b> Contact</b></a>
+      <a mat-button *ngIf="authority === 'user'" routerLink="/userprofile" class="serif" routerLinkActive="active" ><i class="fa fa-address-card fa-lg" aria-hidden="true"></i><b> Profile</b></a>
       <a mat-button routerLink="/start" class="serif" routerLinkActive="active"><i class="fa fa-user-alt icon-5x"></i><b> Login or SignUp</b></a>
       <a mat-button (click)="logout()"><b>Logout</b></a>
     </div>

@@ -12,18 +12,21 @@ import { first } from 'rxjs/operators';
 import { TokenStorageService } from '../auth/token-storage.service';
 import { User } from '../_models/user';
 import { Location } from '@angular/common';
+import { DISABLED } from '@angular/forms/src/model';
 @Component({
   selector: 'app-courierrequest',
   templateUrl: './courierrequest.component.html',
   styleUrls: ['./courierrequest.component.scss'],
 })
 export class CourierrequestComponent implements OnInit {
+  Userlog:any[];
   currentUser: User;
     userFromApi: User;
     users: User[] = [];
     board: string;
     errorMessage = '';
     info=false;
+    payment=false;
   @ViewChild('fform') pickupFormDirective: any;
   pickupForm:FormGroup;
   courier: Courier;
@@ -125,9 +128,11 @@ export class CourierrequestComponent implements OnInit {
   constructor(private fb: FormBuilder,private couriertype:CouriertypeService,private token: TokenStorageService, private location: Location,
   private courierserviceservice:CourierserviceService,private courierdata:CourierdataService,private userService: UserService) { 
     this.createForm();
+    
   }
   ngOnInit() {
     token: this.token.getToken();
+    this.userService.getUserDetails().subscribe(Userlog=>this.Userlog=Userlog,error => console.log(error));
   }
   
   createForm() {
@@ -153,13 +158,13 @@ export class CourierrequestComponent implements OnInit {
       vol:['',[Validators.required]],
       contacttype:'None',
       agree:false,
+      redeemPoints:false,
     });
     this.pickupForm.valueChanges
       .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
   }
-  
   onSubmit(){
     let p=Math.round(parseInt(this.pickupForm.value.wt)*parseInt(this.pickupForm.value.vol)/5000);
     if(this.pickupForm.value.courierservice=="Standard"){
@@ -168,7 +173,7 @@ export class CourierrequestComponent implements OnInit {
     else if(this.pickupForm.value.courierservice=="Overnight"){
       p+=900;
     }
-    else if(this.pickupForm.value.courierservice=="SameDay Express"){
+    else if(this.pickupForm.value.courierservice=="Same-Day"){
       p+=500;
     }
     else if(this.pickupForm.value.courierservice=="International"){
@@ -200,7 +205,8 @@ export class CourierrequestComponent implements OnInit {
       "Yet_to_accept",
       this.pickupForm.value.wt,
       this.pickupForm.value.vol,
-      String(p)
+      String(p),
+      this.pickupForm.value.redeemPoints,
      );
      console.log(this.courier);
       this.courierdata.create(this.courier).subscribe(data => console.log(data), error => console.log(error));
@@ -227,14 +233,21 @@ export class CourierrequestComponent implements OnInit {
     vol:'',
     contacttype:'None',
     agree:false,
+    redeemPoints:false,
   })
   this.pickupForm.reset();
+}
+fun(){
+  this.pickupForm.value.redeemPoints=true;
 }
 getInfo(){
   this.info=true;
   this.submitted=false;
  this.courierdata.getcourierbymail(this.courier.email).subscribe(courier=>this.addedcourier=courier,error => console.log(error));
 
+}
+makePayment(){
+  this.payment=true;
 }
   onValueChanged(data?: any) {
     if (!this.pickupForm) { return; }

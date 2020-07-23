@@ -10,6 +10,7 @@ import { UserService } from './services/user.service';
 import {MatIconModule} from '@angular/material/icon';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTabsModule} from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -55,6 +56,9 @@ import { DashboardcboyComponent } from './dashboardcboy/dashboardcboy.component'
 import { CourierboydeliveryComponent } from './courierboydelivery/courierboydelivery.component';
 import { SliderComponent } from './slider/slider.component';
 import { TransportComponent } from './transport/transport.component';
+import { PaymentComponent } from './payment/payment.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { UserprofileComponent } from './userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +82,8 @@ import { TransportComponent } from './transport/transport.component';
     CourierboydeliveryComponent,
     SliderComponent,
     TransportComponent,
+    PaymentComponent,
+    UserprofileComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +110,9 @@ import { TransportComponent } from './transport/transport.component';
     HttpClientModule,
     MatGridListModule,
     MatSidenavModule,
-    OwlModule
+    OwlModule,
+    NgxPayPalModule,
+    MatTabsModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   entryComponents: [

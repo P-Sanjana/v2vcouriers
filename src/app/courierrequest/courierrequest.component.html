@@ -1,3 +1,7 @@
+<head>
+ 
+</head>
+<body>
 <div *ngIf="!submitted && !info">
 <h4>Fill in the form to post a courier</h4>
 <form  novalidate [formGroup]="pickupForm" #fform="ngForm" (ngSubmit)="onSubmit()">
@@ -136,6 +140,11 @@
             <mat-error *ngIf="formErrors.vol">{{formErrors.vol}}</mat-error>  
           </mat-form-field>
     </p>
+   <p>
+    <mat-checkbox *ngIf="Userlog[3]!=0" (change)="fun()">Redeem Points</mat-checkbox>
+  <mat-checkbox *ngIf="Userlog[3]===0"  [disabled]="true">You cannot redeem since you have 0 points</mat-checkbox>
+   </p>
+      
     <button type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue;" (click)="goBack()">Back</button>
     <button type="reset" mat-raised-button class=" text-floral-white"  style="background-color:gray">Reset</button>
     <button type="submit" mat-raised-button class=" text-floral-white" style="background-color:green" [disabled]="fform.form.invalid">Submit</button>
@@ -162,13 +171,16 @@ fxLayoutGap="10px">
 <p>Sender's Name : {{addedcourier.sendername}}</p>
 <p>Sender's Mail : {{addedcourier.email}}</p>
 <p>Sender's Phone Number : {{addedcourier.phnumber}}</p>
-<p>Sender's Address : {{addedcourier.senderaddress}} , {{addedcourier.sendercity}} , {{addedcourier.senderstate}}</p>
+<p>Sender's Address : {{addedcourier.senderaddress}} , {{addedcourier.sendercity}} ,{{addedcourier.senderdistrict}} ,{{addedcourier.senderstate}}</p>
 <h3>Recipient Information</h3>
 <p>Recipient Name : {{addedcourier.repname}}</p>
 <p>Recipient Phone Number : {{addedcourier.repphnumber}}</p>
-<p>Recipient Address : {{addedcourier.repaddress}} , {{addedcourier.repcity}} , {{addedcourier.repstate}}</p>
+<p>Recipient Address : {{addedcourier.repaddress}} , {{addedcourier.repcity}} , {{addedcourier.repdistrict}},{{addedcourier.repstate}}</p>
 <br>
 <p>Courier Service : {{addedcourier.courierservice}}</p>
 <br>
 <h2>The price to be paid : <b>{{addedcourier.price}}</b></h2>
+<app-payment></app-payment>
 </div>
+</body>
+

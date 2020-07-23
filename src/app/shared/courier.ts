@@ -21,10 +21,11 @@ export class Courier{
     status:string;
     wt:string;
     vol:string;
-    price:string;  
+    price:string; 
+    redeemPoints:boolean; 
     constructor(sendername:string,email:string,phnumber:string,senderaddress:string,sendercity:string,senderdistrict:string,senderstate:string,
         sendercountry:string,agree:boolean,contacttype:string,repname:string,repphnumber:string,repaddress:string,repcity:string,repdistrict:string,repstate:string,
-        repcountry:string,courierservice:string,pickupdate:Date,status:string,wt:string,vol:string,price:string) {
+        repcountry:string,courierservice:string,pickupdate:Date,status:string,wt:string,vol:string,price:string,redeemPoints:boolean) {
             this.sendername=sendername;
             this.email=email;
             this.phnumber=phnumber;
@@ -48,8 +49,8 @@ export class Courier{
             this.wt=wt;
             this.vol=vol;
             this.price=price;
-       
+            this.redeemPoints=redeemPoints;
     }
 }
 export const ContactType = ['None', 'Phone', 'Email'];
-export const courierservice=['Standard','Overnight','SameDayExpress','International','Pallet'];
+export const courierservice=['Standard','Overnight','Same-Day','International','Pallet'];

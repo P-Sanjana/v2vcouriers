@@ -25,12 +25,19 @@ export class CourierdataService {
   private getyettoreceive='https://localhost:8443/v2vcouriers/couriersbyytrstatus';
   private updateytr="https://localhost:8443/v2vcouriers/updateytrstatus/";
   private getinprogress='https://localhost:8443/v2vcouriers/couriersbyinstatus';
-  private updateinp='https://localhost:8443/v2vcouriers/updateinstatus/';
+  private updateinp='https://localhost:8443/v2vcouriers/updateipstatus/';
   private getreadytd='https://localhost:8443/v2vcouriers/couriersbyrtdstatus';
   private updatertd='https://localhost:8443/v2vcouriers/updatertdstatus/';
   private getall='https://localhost:8443/v2vcouriers/couriers';
   private getvehiclesender='https://localhost:8443/v2vcouriers/sendervehicleidbycourierid/';
   private getvehiclerep="https://localhost:8443/v2vcouriers/repvehicleidbycourierid/";
+  public price;
+  setPrice(price){
+    this.price=price;
+  }
+  getPrice(){
+    return this.price;
+  }
   getAllCouriers():Observable<any>{
     return this.http.get<any>(this.getall);
   }

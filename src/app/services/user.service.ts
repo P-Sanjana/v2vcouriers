@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 export class UserService {
   sharedData:string[];
   private userUrl = 'https://localhost:8443/api/test/user';
-  private cboyUrl = 'https://localhost:8443/api/test/courierboy';
+  private cboyUrl = 'https://localhost:8443/api/test/courier';
   private adminUrl = 'https://localhost:8443/api/test/admin';
+  private userpUrl='https://localhost:8443/v2vcouriers/myaccount';
   constructor(private http: HttpClient) { }
   setSharedData(authorities:string[]){
     this.sharedData=authorities;
@@ -28,5 +29,7 @@ export class UserService {
   getAdminBoard(): Observable<string> {
     return this.http.get(this.adminUrl, { responseType: 'text' });
   }
-
+  getUserDetails():Observable<any>{
+    return this.http.get(this.userpUrl);
+  }
 }
