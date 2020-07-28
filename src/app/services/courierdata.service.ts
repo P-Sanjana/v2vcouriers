@@ -8,6 +8,7 @@ import { couriers } from '../shared/couriers';
 import 'rxjs/add/operator/toPromise';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Headers, Http } from '@angular/http';
+import {Couriervehicle} from '../shared/couriervehicle';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -31,6 +32,8 @@ export class CourierdataService {
   private getall='https://localhost:8443/v2vcouriers/couriers';
   private getvehiclesender='https://localhost:8443/v2vcouriers/sendervehicleidbycourierid/';
   private getvehiclerep="https://localhost:8443/v2vcouriers/repvehicleidbycourierid/";
+  private getlocation="https://localhost:8443/v2vcouriers/jsontest/";
+  private getextrap="https://localhost:8443/v2vcouriers/extrapoints/";
   public price;
   setPrice(price){
     this.price=price;
@@ -86,5 +89,17 @@ export class CourierdataService {
   }
   getVehicleRep(id:number){
     return this.http.get(this.getvehiclerep+id);
+  }
+  getVehicleLocation(id:number){
+    return this.http.get(this.getlocation+id);
+  }
+  getextraPoints(id:number):Observable<any>{
+    return this.http.get<any>(this.getextrap+id).pipe(
+      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
+  }
+  updateCourierlocation(locationinfo:any){
+    console.log(locationinfo);
+    return this.http.put(this.baseURL+'couriers/'+locationinfo.id,locationinfo,httpOptions).pipe(
+      catchError((r: HttpErrorResponse) => throwError(r.error || 'Server error')));
   }
 }

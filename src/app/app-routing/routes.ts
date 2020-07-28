@@ -18,6 +18,7 @@ import { CourierboydeliveryComponent } from '../courierboydelivery/courierboydel
 import { AuthGuard } from '../auth/auth.guard';
 import { TransportComponent } from '../transport/transport.component';
 import { UserprofileComponent } from '../userprofile/userprofile.component';
+import { ServicesguideComponent } from '../servicesguide/servicesguide.component';
 export const routes: Routes = [
     {path:'auth/login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
@@ -36,6 +37,7 @@ export const routes: Routes = [
     {path:'dashboardcboy',component:DashboardcboyComponent,canActivate: [AuthGuard]},
     {path:'courierboydelivery',component:CourierboydeliveryComponent,canActivate: [AuthGuard]},
     {path:'transport',component:TransportComponent,canActivate:[AuthGuard]},
-    {path:'userprofile',component:UserprofileComponent,canActivate:[AuthGuard]}
+    {path:'userprofile',component:UserprofileComponent,canActivate:[AuthGuard]},
+    {path:'servicesguide',component:ServicesguideComponent}
   ];
   

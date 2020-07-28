@@ -24,6 +24,7 @@ export class CourierrequestComponent implements OnInit {
     userFromApi: User;
     users: User[] = [];
     board: string;
+    extrap:any;
     errorMessage = '';
     info=false;
     payment=false;
@@ -234,7 +235,7 @@ export class CourierrequestComponent implements OnInit {
     contacttype:'None',
     agree:false,
     redeemPoints:false,
-  })
+  })   
   this.pickupForm.reset();
 }
 fun(){
@@ -244,7 +245,7 @@ getInfo(){
   this.info=true;
   this.submitted=false;
  this.courierdata.getcourierbymail(this.courier.email).subscribe(courier=>this.addedcourier=courier,error => console.log(error));
-
+this.courierdata.getextraPoints(this.addedcourier.id).subscribe(extrap=>console.log(extrap),error=>console.log(error));
 }
 makePayment(){
   this.payment=true;

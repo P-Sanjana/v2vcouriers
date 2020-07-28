@@ -24,9 +24,10 @@
 <h3>Recipient Information</h3>
 <p><b>Recipient Name</b> : {{courier.repname}}</p>
 <p><b>Recipient Phone Number</b> : {{courier.repphnumber}}</p>
-<p><b>Recipient Address</b> : {{courier.repaddress}} , {{courier.repcity}} , {{courier.state}}</p>
+<p><b>Recipient Address</b> : {{courier.repaddress}} , {{courier.repcity}} , {{courier.repstate}}</p>
 <br>
 <p><b>Courier Service</b> : {{courier.courierservice}}</p>
+<p><b>Location</b> : {{couriervehicleinfo.currentLocation}}</p>
     <div class="container">
         
         <span *ngFor="let item of tracks;let i=index">

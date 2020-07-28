@@ -14,7 +14,7 @@
      V2V Couriers
     </mat-toolbar>
     <div>
-      <div *ngFor="let courier of couriers">
+      <div *ngFor="let courier of couriers;index as i">
         <h4>Consignment Number : {{courier.id}}</h4>
         <h3>Senders's Information</h3>
         <p>Sender's Name : {{courier.sendername}}</p>
@@ -29,10 +29,10 @@
         <p>Courier Service : {{courier.courierservice}}</p>
         <br>
         <h4>The price to be paid : <b>{{courier.price}}</b></h4>
-        <button *ngIf="courier.status==='Yet_to_receive' || courier.status==='In_progress' || courier.status==='Ready_to_deliver'" type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue" (click)="getInfo(courier)">Transportation Info</button>
+        <button *ngIf="courier.status==='Yet_to_receive' || courier.status==='In_progress' || courier.status==='Ready_to_deliver'" type="button" mat-raised-button class="text-floral-white" style="background-color: cadetblue" (click)="getInfo(courier,i)">Transportation Info</button>
         <p *ngIf="courier.status==='Yet_to_accept'">Need to be Accepted</p> 
         <p *ngIf="courier.status==='Delivered'">Delivered</p>
-        <div *ngIf="clicked">
+        <div *ngIf="clicked && i==index">
         <h4>Vehicle Id : {{vehicle}}</h4>
         </div>
         <hr>  

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "serve":"ng serve --port 4200",
     "start": "ng serve --port 4200",
     "build": "webpack --mode production",
     "test": "ng test",

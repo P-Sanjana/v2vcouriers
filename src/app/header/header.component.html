@@ -10,12 +10,13 @@
     <span class="flex-spacer"></span>
   <a mat-button routerLink="/home"  class="serif" routerLinkActive="active"  ><i class="fa fa-home fa-lg"></i><b> Home</b></a>
   <a mat-button routerLink="/about" class="serif" routerLinkActive="active"><i class="fa fa-info-circle fa-lg"></i><b> About</b></a>
+  <a mat-button routerLink="/servicesguide" class="serif" routerLinkActive="active"><mat-icon>grade</mat-icon><b>Services</b></a>
   <a mat-button  *ngIf="authority === 'user'" routerLink="/courierrequest" class="serif" routerLinkActive="active" ><i class="fa fa-envelope fa-lg"></i><b> CourierRequest</b></a>
-  <a mat-button  *ngIf="authority === 'user'" routerLink="/track" class="serif" routerLinkActive="active" ><i class="fa fa-paper-plane fa-lg"></i><b> Track</b></a>
+  <a mat-button  *ngIf="authority === 'user'" routerLink="/track" class="serif" routerLinkActive="active" ><mat-icon> location_on</mat-icon><b> Track</b></a>
   <a mat-button   *ngIf="authority === 'admin'" routerLink="/dashboard" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b> Dashboard</b></a>
   <a mat-button  *ngIf="authority === 'cboy'" routerLink="/dashboardcboy" class="serif" routerLinkActive="active" ><i class="fa fa-clock-o fa-lg"></i><b>  Dashboard</b></a>
   <a mat-button routerLink="/contactus" class="serif" routerLinkActive="active" ><i class="fa fa-address-card fa-lg" aria-hidden="true"></i><b> Contact</b></a>
-  <a mat-button *ngIf="authority === 'user'" routerLink="/userprofile" class="serif" routerLinkActive="active" ><i class="fa fa-address-card fa-lg" aria-hidden="true"></i><b> Profile</b></a>
+  <a mat-button *ngIf="authority === 'user'" routerLink="/userprofile" class="serif" routerLinkActive="active" ><mat-icon>perm_identity</mat-icon><b> Profile</b></a>
   <a mat-button routerLink="/start" class="serif" routerLinkActive="active"><i class="fa fa-user-circle fa-lg"></i><b> Login or SignUp</b></a>
   <a mat-button (click)="logout()"><mat-icon>power_settings_new</mat-icon><b> Logout</b></a>
   </div>

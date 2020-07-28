@@ -1,0 +1,194 @@
+<h2>Services</h2>
+<p>V2VCouriers offers a comprehensive range of solutions to the requirements of delivery of Documents/Non-Documents, 
+  all types of cargo – high value, critical and urgent shipments all over India and any part of the World. Based on the specific 
+  requirements of each individual or corporate the company provides customized services with the application of multi-modal 
+  distribution systems integrated by Surface Transport and by Air Freight/Sea Freight.</p>
+<mat-accordion class="example-headers-align">
+  <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        International
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center" 
+    >
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img  src="/assets/images/airplane.jpg" width="250px" height="200px">
+        </div>
+        <div fxFlex="60">
+        
+        The Professional Couriers is dedicated to reach every Documents, Non-Documents-Sample Shipments, Commercial Shipments, Import & Export Goods to every possible places in the world as per customer requirements.
+
+        TPC is committed to provide affordable International courier service adhering to the stringent time schedules and quality standards. Professional International Couriers Pvt Ltd., a sister
+        concern in the Professional Group of companies, provides international express service with a great degree of operational versatility and professional Customer Care with the shipment status that can monitor on a continuous basis through its web based Track & Trace System.
+        Business associates offices established in New York/USA, Singapore and Dubai/UAE functions as the World Hubs for ensuring International connectivity to the rest of the world through a Network of our Strategic Business Partners.
+        
+        Global Express
+        All documents / Non-documents are delivered worldwide at most economical rates. The chosen modes of operational connectivity gives us a cutting edge for faster services as per the requirements of the customers.
+        
+        University Express
+        Special Messenger Services are made available for exclusive deliveries of University Applications of Students  
+        </div>
+      </div>
+    </div>
+    </div>
+    <mat-action-row>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Standard
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center" 
+    >
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img  src="/assets/images/truck.jpg" width="250px" height="200px">
+        </div>
+        <div fxFlex="60">
+        
+          All your bulk consignments are transported through our own fleet of Vehicles and through our own leased Railway Wagons and 
+          through other modes to various stations all over India. Supported by container LCVs, TPC ensures added safety and on time 
+          delivery for surface transit cargo. 
+        </div>
+      </div>
+    </div>
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">Next</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+
+  <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       Pallet
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center" 
+    >
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img  src="/assets/images/pallet.jpg" width="250px" height="200px">
+        </div>
+        <div fxFlex="60">
+          such as door-to-door as well as hub-to-hub pick-up and delivery services, 100% movement through containerized GPS-enabled 
+          vehicles supported by backend facilities like customized MIS for corporate clients, round-the-clock online tracking functionality,
+           one-time tamper-proof lock, e-billing and e-POD.
+        </div>
+      </div>
+    </div>
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="step === 3" (opened)="setStep(3)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       Overnight
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div 
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center" 
+    >
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img  src="/assets/images/RailFreight.png" width="250px" height="200px">
+        </div>
+        <div fxFlex="60">
+          Rail freight forwarding is the most cost-effective solution for transporting bulky and heavy items accross long distances.
+           Trains are typically used for transporting raw products such as coal or steel. At Eurosender, we can organise the 
+           transportation of your goods by rail freight or other efficient shipping services.
+        </div>
+      </div>
+    </div>
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+  <mat-expansion-panel [expanded]="step === 4" (opened)="setStep(4)" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       SameDay Express
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div 
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center">
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+          <img  src="/assets/images/sameday.jpg" width="250px" height="200px">
+        </div>
+        <div fxFlex="60">
+          Rail freight forwarding is the most cost-effective solution for transporting bulky and heavy items accross long distances.
+           Trains are typically used for transporting raw products such as coal or steel. At Eurosender, we can organise the 
+           transportation of your goods by rail freight or other efficient shipping services.
+        </div>
+      </div>
+    </div>
+    </div>
+    <mat-action-row>
+      <button mat-button color="warn" (click)="prevStep()">Previous</button>
+      <button mat-button color="primary" (click)="nextStep()">End</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<h3><mat-icon>warning</mat-icon>Dangerous/Banned Articles</h3>
+<div 
+    fxLayout="row wrap" 
+    fxLayout.lt-md="column" 
+    fxLayoutAlign="center center">
+    <div fxFlex="100" fxFlex.gt-sm="50">
+      <div fxLayout="row">
+        <div fxFlex="40">
+            <li>Currency</li>
+            <li>Liquids & Semi Liquids</li>
+            <li>Perishables</li>
+            <li>Indian Postal Articles</li>
+            <li>All such commodities banned by Law from time to time</li>
+            <li>Food and Food Products containing liquids</li>
+            <li>Contrabands</li>
+            <li>Explosive Materials</li>
+            <li>Precious & Semi-Precious Articles</li>
+            <li>Substances liable to heating or catching fire under normal conditions experienced in transportations</li>
+        </div>
+        <div fxFlex="60">
+          <li>Toxic gases and compressed air of gas appliances</li>
+          <li>Flammables</li>
+          <li>Poisonous Articles</li>
+          <li>Radioactive Materials</li>
+          <li>Corrosive Materials</li>
+          <li>Powders</li>
+          <li>Solid and liquid chemicals</li>
+          <li>Pressurized cylinder or bottles</li>
+        </div>
+      </div>
+    </div>
+    </div>

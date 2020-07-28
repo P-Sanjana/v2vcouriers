@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SliderComponent implements OnInit {
   
-  mySlideOptions={items: 1, dots: true, nav: true};
+  mySlideOptions={items: 1, dots: true, nav: true,navSpeed: 700,loop:true,autoplay:true,autoplayTimeout:3000,autoplayHoverPause:true};
   myCarouselOptions={items: 3, dots: true, nav: true};
   constructor() {
    

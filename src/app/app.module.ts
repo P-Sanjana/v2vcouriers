@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material';
+import {MatExpansionModule} from '@angular/material/expansion';
 import { httpInterceptorProviders } from './auth/auth-interceptor';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
@@ -59,6 +60,7 @@ import { TransportComponent } from './transport/transport.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { UserprofileComponent } from './userprofile/userprofile.component';
+import { ServicesguideComponent } from './servicesguide/servicesguide.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +86,7 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     TransportComponent,
     PaymentComponent,
     UserprofileComponent,
+    ServicesguideComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,7 +115,8 @@ import { UserprofileComponent } from './userprofile/userprofile.component';
     MatSidenavModule,
     OwlModule,
     NgxPayPalModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   schemas: [ NO_ERRORS_SCHEMA ],
   entryComponents: [
