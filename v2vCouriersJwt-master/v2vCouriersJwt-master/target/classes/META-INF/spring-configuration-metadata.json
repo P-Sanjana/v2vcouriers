@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.v2vCouriers.myapp.jwtauthentication.security.services.JsonServerDetailsService",
+      "name": "endpoint",
+      "type": "com.v2vCouriers.myapp.jwtauthentication.security.services.JsonServerDetailsService"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.v2vCouriers.myapp.jwtauthentication.security.services.JsonServerDetailsService",
+      "name": "endpoint.url",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: SpringBootJwtAuthentication
+Implementation-Version: 0.0.1
+Built-By: Podduturi sanjana
+Implementation-Vendor-Id: com.v2vCouriers.myapp.jwtauthentication
+Build-Jdk: 1.8.0_231
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/SpringBootJwtAuthentication
+Created-By: Maven Integration for Eclipse
+
